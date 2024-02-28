@@ -1,1 +1,2 @@
-# WTECH_2024_MikovaPopadakova
+# Semestrálny projekt z predmetu WTECH - eshop
+Autori: Petra Miková, Laura Popaďáková
