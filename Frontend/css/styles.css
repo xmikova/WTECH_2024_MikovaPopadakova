@@ -1,0 +1,20 @@
+/* styles.css */
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(to right, #CE9C93, #DBE6F6);
+}
+
+.navbar-toggler-text {
+    font-size: 0.8rem;
+}
+
+footer {
+    margin-top: auto;
+}
