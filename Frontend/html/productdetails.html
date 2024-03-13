@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link href="../css/styles.css" rel="stylesheet">
-    <link href="../css/productcategory.css" rel="stylesheet">
+    <link href="../css/productdetails.css" rel="stylesheet">
     <style>
         /* Sidebar style pre kategórie */
         #sidebar {
@@ -64,127 +64,39 @@
     </div>
 </nav>
 
-<section class="category-header mt-5">
-    <div class="container">
-        <div class="row">
-            <div class="col text-center">
-                <h4>Názov kategórie</h4>
-                <p>Tu bude krátky popis kategórie.</p>
+<section class="container py-4">
+    <div class="main-container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="d-flex justify-content-center">
+                    <img src="../images/image1.jpg" id="main-image" alt="Product Image" class="img-fluid mb-3">
+                </div>
+                <div class="d-flex justify-content-center">
+                    <img src="../images/image1.jpg" class="thumbnail img-fluid me-2" alt="Thumbnail Image 1">
+                    <img src="../images/image2.png" class="thumbnail img-fluid me-2  ms-lg-5" alt="Thumbnail Image 2">
+                    <img src="../images/image1.jpg" class="thumbnail img-fluid  ms-lg-5" alt="Thumbnail Image 3">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <h1 class="mb-3 mt-lg-4">Názov produktu</h1>
+                <p class="mb-3">Popis produktu sa bude nachádzať tuto:</p>
+                <p class="mb-3">___________________________________________</p>
+                <p class="mb-3">___________________________________________</p>
+                <p class="mb-3">___________________________________________</p>
+                <p class="mb-3">___________________________________________</p>
+                <p class="mb-3">___________________________________________</p>
+                <h2 class="mb-3">Cena: XX.XX€</h2>
+                <select id="device-type" class="form-select mb-3" style="width: 250px">
+                    <option value="phone">iPhone 11</option>
+                    <option value="tablet">iPhone 12</option>
+                    <option value="laptop">iPhone 13</option>
+                </select>
+                <button id="add-to-cart" class="btn btn-outline-dark p-3">Add to Cart</button>
             </div>
         </div>
     </div>
 </section>
 
-<div class="container mt-4 mb-lg-5">
-    <div class="row align-items-center justify-content-center">
-        <div class="col-md-2">
-            <select class="form-select">
-                <option value="phone-type">Typ telefónu</option>
-                <!-- Možnosti tu: -->
-            </select>
-        </div>
-        <div class="col-md-2">
-            <select class="form-select">
-                <option value="material">Materiál</option>
-                <!-- Možnosti tu: -->
-            </select>
-        </div>
-        <div class="col-md-2">
-            <select class="form-select">
-                <option value="color">Farba</option>
-                <!-- Možnosti tu: -->
-            </select>
-        </div>
-        <div class="col-md-4">
-            <label for="priceSlider" class="form-label">Cena</label>
-            <input type="range" min="0" max="100" value="50" class="form-range" id="priceSlider">
-        </div>
-    </div>
-</div>
-
-<div class="container">
-    <div class="row row-cols-1 row-cols-md-4 g-4">
-        <!-- Product cards here -->
-        <div class="col">
-            <a href="productdetails.html" class="card">
-                <img src="../images/image1.jpg" class="card-img-top" alt="Product 1">
-                <div class="card-body">
-                    <h5 class="card-title">Product Name 1</h5>
-                    <p class="card-text">XX.XX€</p>
-                </div>
-            </a>
-        </div>
-        <div class="col">
-            <a href="productdetails.html" class="card">
-                <img src="../images/image1.jpg" class="card-img-top" alt="Product 1">
-                <div class="card-body">
-                    <h5 class="card-title">Názov produktu</h5>
-                    <p class="card-text">XX.XX€</p>
-                </div>
-            </a>
-        </div>
-        <div class="col">
-            <a href="producdetails.html" class="card">
-                <img src="../images/image1.jpg" class="card-img-top" alt="Product 1">
-                <div class="card-body">
-                    <h5 class="card-title">Názov produktu</h5>
-                    <p class="card-text">XX.XX€</p>
-                </div>
-            </a>
-        </div>
-        <div class="col">
-            <a href="productdetails.html" class="card">
-                <img src="../images/image1.jpg" class="card-img-top" alt="Product 1">
-                <div class="card-body">
-                    <h5 class="card-title">Názov produktu</h5>
-                    <p class="card-text">XX.XX€</p>
-                </div>
-            </a>
-        </div>
-        <div class="col">
-            <a href="productdetails.html" class="card">
-                <img src="../images/image1.jpg" class="card-img-top" alt="Product 1">
-                <div class="card-body">
-                    <h5 class="card-title">Názov produktu</h5>
-                    <p class="card-text">XX.XX€</p>
-                </div>
-            </a>
-        </div>
-        <div class="col">
-            <a href="productdetails.html" class="card">
-                <img src="../images/image1.jpg" class="card-img-top" alt="Product 1">
-                <div class="card-body">
-                    <h5 class="card-title">Názov produktu</h5>
-                    <p class="card-text">XX.XX€</p>
-                </div>
-            </a>
-        </div>
-        <div class="col">
-            <a href="productdetails.html" class="card">
-                <img src="../images/image1.jpg" class="card-img-top" alt="Product 1">
-                <div class="card-body">
-                    <h5 class="card-title">Názov produktu</h5>
-                    <p class="card-text">XX.XX€</p>
-                </div>
-            </a>
-        </div>
-        <div class="col">
-            <a href="productdetails.html" class="card">
-                <img src="../images/image1.jpg" class="card-img-top" alt="Product 1">
-                <div class="card-body">
-                    <h5 class="card-title">Názov produktu</h5>
-                    <p class="card-text">XX.XX€</p>
-                </div>
-            </a>
-        </div>
-    </div>
-    <nav aria-label="Page navigation">
-        <ul class="pagination justify-content-center mt-4">
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-        </ul>
-    </nav>
-</div>
 
 
 <footer class="bg-light text-dark py-2">
@@ -227,6 +139,17 @@
     // Funkcia na objavenie sidebaru po kliknutí na kategórie
     document.getElementById('toggleSidebar').addEventListener('click', function() {
         document.getElementById('sidebar').classList.toggle('show');
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const mainImage = document.getElementById("main-image");
+        const thumbnails = document.querySelectorAll(".thumbnail");
+
+        thumbnails.forEach(thumbnail => {
+            thumbnail.addEventListener("click", function() {
+                mainImage.src = thumbnail.src;
+            });
+        });
     });
 </script>
 </body>
