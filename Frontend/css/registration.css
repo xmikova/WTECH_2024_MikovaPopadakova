@@ -1,0 +1,19 @@
+.favorite-categories {
+    background-color: rgba(255, 255, 255, 0.45);
+    padding: 40px 0;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.buyNow {
+    text-align: center;
+}
+.buyNow h5 {
+    font-size: 1.5rem;
+    padding-bottom: 10px;
+}
+.buyNow button.btn {
+    font-size: 1.2rem;
+    padding: 0.5rem 1.5rem;
+}

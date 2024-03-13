@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link href="../css/styles.css" rel="stylesheet">
-    <link href="../css/productdetails.css" rel="stylesheet">
+    <link href="../css/shoppingbasket.css" rel="stylesheet">
     <style>
         /* Sidebar style pre kategórie */
         #sidebar {
@@ -64,38 +64,96 @@
     </div>
 </nav>
 
-<section class="container py-4">
-    <div class="main-container">
-        <div class="row justify-content-center">
-            <div class="col-lg-6">
-                <div class="d-flex justify-content-center">
-                    <img src="../images/image1.jpg" id="main-image" alt="Product Image" class="img-fluid mb-3">
-                </div>
-                <div class="d-flex justify-content-center">
-                    <img src="../images/image1.jpg" class="thumbnail img-fluid me-2" alt="Thumbnail Image 1">
-                    <img src="../images/image2.png" class="thumbnail img-fluid me-2  ms-lg-5" alt="Thumbnail Image 2">
-                    <img src="../images/image1.jpg" class="thumbnail img-fluid  ms-lg-5" alt="Thumbnail Image 3">
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <h1 class="mb-3 mt-lg-4">Názov produktu</h1>
-                <p class="mb-3">Popis produktu sa bude nachádzať tuto:</p>
-                <p class="mb-3">___________________________________________</p>
-                <p class="mb-3">___________________________________________</p>
-                <p class="mb-3">___________________________________________</p>
-                <p class="mb-3">___________________________________________</p>
-                <p class="mb-3">___________________________________________</p>
-                <h2 class="mb-3">Cena: XX.XX€</h2>
-                <select id="device-type" class="form-select mb-3" style="width: 250px">
-                    <option value="phone">iPhone 11</option>
-                    <option value="tablet">iPhone 12</option>
-                    <option value="laptop">iPhone 13</option>
-                </select>
-                <button id="add-to-cart" class="btn btn-outline-dark p-3">Add to Cart</button>
+<!-- Kategórie menu -->
+<div id="sidebar">
+    <div class="mt-3 text-center mb-3">
+        <h6>Kategórie:</h6>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item"><a href="productcategory.html" class="text-dark text-decoration-none">Obaly na telefón</a></li>
+        <li class="list-group-item"><a href="productcategory.html" class="text-dark text-decoration-none">Obaly na slúchadlá</a></li>
+        <li class="list-group-item"><a href="productcategory.html" class="text-dark text-decoration-none">Ochranné fólie a sklá</a></li>
+        <li class="list-group-item"><a href="productcategory.html" class="text-dark text-decoration-none">Obaly na laptop</a></li>
+        <li class="list-group-item"><a href="productcategory.html" class="text-dark text-decoration-none">Obaly na tablet</a></li>
+        <li class="list-group-item"><a href="productcategory.html" class="text-dark text-decoration-none">Remienky na smart hodinky</a></li>
+        <li class="list-group-item"><a href="productcategory.html" class="text-dark text-decoration-none">Káble a príslušenstvo</a></li>
+    </ul>
+</div>
+
+
+
+<!-- Nadpis -->
+<section class="favorite-categories mt-xl-5 me-xl-5 ms-xl-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center mb-4">
+                <h2>Nákupný košík</h2>
             </div>
         </div>
     </div>
 </section>
+
+<!-- Košík -->
+<section class="favorite-categories mt-xl-5 me-xl-5 ms-xl-5">
+    <div class="container">
+        <!-- Príklad produktu č.1 -->
+        <div class="row mb-3 border rounded">
+            <div class="col-2">
+                <img src="../images/image1.jpg" alt="Produkt 1" class="img-fluid">
+            </div>
+            <div class="col-8">
+                <h5><a href="#" class="product-link">Názov produktu 1</a></h5>
+                <p>Krátky popis produktu 1</p>
+                <p>Cena: $XX.XX</p>
+            </div>
+            <div class="col-2 d-flex flex-column justify-content-around align-items-center">
+                <button class="btn btn-outline-dark">+</button>
+                <span>1</span>
+                <button class="btn btn-outline-dark">-</button>
+            </div>
+        </div>
+        <!-- Príklad produktu č.2 -->
+        <div class="row mb-3 border rounded">
+            <div class="col-2">
+                <img src="../images/image1.jpg" alt="Produkt 2" class="img-fluid">
+            </div>
+            <div class="col-8">
+                <h5><a href="#" class="product-link">Názov produktu 2</a></h5>
+                <p>Krátky popis produktu 2</p>
+                <p>Cena: $XX.XX</p>
+            </div>
+            <div class="col-2 d-flex flex-column justify-content-around align-items-center">
+                <button class="btn btn-outline-dark">+</button>
+                <span>1</span>
+                <button class="btn btn-outline-dark">-</button>
+            </div>
+        </div>
+        <!-- Príklad produktu č.3 -->
+        <div class="row mb-3 border rounded">
+            <div class="col-2">
+                <img src="../images/image1.jpg" alt="Produkt 3" class="img-fluid">
+            </div>
+            <div class="col-8">
+                <h5><a href="#" class="product-link">Názov produktu 3</a></h5>
+                <p>Krátky popis produktu 3</p>
+                <p>Cena: $XX.XX</p>
+            </div>
+            <div class="col-2 d-flex flex-column justify-content-around align-items-center">
+                <button class="btn btn-outline-dark">+</button>
+                <span>1</span>
+                <button class="btn btn-outline-dark">-</button>
+            </div>
+        </div>
+        <div class="row mb-3 justify-content-center">
+            <div class="buyNow ms-lg-3 text-center">
+                <h5>Celková cena: $XXX.XX</h5>
+                <button class="btn btn-outline-dark" onclick="window.location.href = 'delivery.html';" >Pokračovať k doprave</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+
 
 
 
@@ -118,38 +176,11 @@
     </div>
 </footer>
 
-<!-- Kategórie menu -->
-<div id="sidebar">
-    <div class="mt-3 text-center mb-3">
-        <h6>Kategórie:</h6>
-    </div>
-    <ul class="list-group">
-        <li class="list-group-item"><a href="productcategory.html" class="text-dark text-decoration-none">Obaly na telefón</a></li>
-        <li class="list-group-item"><a href="productcategory.html" class="text-dark text-decoration-none">Obaly na slúchadlá</a></li>
-        <li class="list-group-item"><a href="productcategory.html" class="text-dark text-decoration-none">Ochranné fólie a sklá</a></li>
-        <li class="list-group-item"><a href="productcategory.html" class="text-dark text-decoration-none">Obaly na laptop</a></li>
-        <li class="list-group-item"><a href="productcategory.html" class="text-dark text-decoration-none">Obaly na tablet</a></li>
-        <li class="list-group-item"><a href="productcategory.html" class="text-dark text-decoration-none">Remienky na smart hodinky</a></li>
-        <li class="list-group-item"><a href="productcategory.html" class="text-dark text-decoration-none">Káble a príslušenstvo</a></li>
-    </ul>
-</div>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script>
     // Funkcia na objavenie sidebaru po kliknutí na kategórie
     document.getElementById('toggleSidebar').addEventListener('click', function() {
         document.getElementById('sidebar').classList.toggle('show');
-    });
-
-    document.addEventListener("DOMContentLoaded", function() {
-        const mainImage = document.getElementById("main-image");
-        const thumbnails = document.querySelectorAll(".thumbnail");
-
-        thumbnails.forEach(thumbnail => {
-            thumbnail.addEventListener("click", function() {
-                mainImage.src = thumbnail.src;
-            });
-        });
     });
 </script>
 </body>
