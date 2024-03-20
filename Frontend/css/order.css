@@ -1,10 +1,13 @@
-.favorite-categories {
+.title-header {
+    background-color: rgba(255, 255, 255, 0.45);
+    padding: 30px 0;
+}
+.order-container {
     background-color: rgba(255, 255, 255, 0.45);
     padding: 40px 0;
     border-radius: 15px;
     display: flex;
     align-items: center;
-    justify-content: center;
 }
 .buyNow h5 {
     font-size: 1.5rem;
