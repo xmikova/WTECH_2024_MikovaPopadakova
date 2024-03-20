@@ -178,7 +178,7 @@
                 </div>
             </div>
             <!-- Výber predajne -->
-            <div class="col-md-6">
+            <div class="col-md-6" id="storeSelection" style="display: none;">
                 <h3>Výber predajne</h3>
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="storeDropdown" data-bs-toggle="dropdown" aria-expanded="false">
@@ -236,5 +236,19 @@
         });
     });
 </script>
+<script>
+    // Function to handle changes in the shipping type radio buttons
+    document.querySelectorAll('input[name="shippingType"]').forEach(function(radioButton) {
+        radioButton.addEventListener('change', function() {
+            if (this.value === 'personalPickup' && this.checked) {
+                document.getElementById('storeSelection').style.display = 'block'; // Show the store selection
+            } else {
+                document.getElementById('storeSelection').style.display = 'none'; // Hide the store selection
+            }
+        });
+    });
+</script>
+
+
 </body>
 </html>
