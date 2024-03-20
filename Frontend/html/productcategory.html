@@ -8,23 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link href="../css/styles.css" rel="stylesheet">
     <link href="../css/productcategory.css" rel="stylesheet">
-    <style>
-        /* Sidebar style pre kategórie */
-        #sidebar {
-            position: fixed;
-            top: 0;
-            left: -250px;
-            height: 100%;
-            width: 250px;
-            background-color: #f8f9fa;
-            transition: left 0.3s ease-in-out;
-            z-index: 1000;
-        }
-        #sidebar.show {
-            left: 0;
-        }
-    </style>
 </head>
+
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -35,7 +20,7 @@
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false">
             <span class="navbar-toggler-icon"></span>
-            <span class="navbar-toggler-text">Menu</span>
+            <span class="navbar-toggler-text fs-6">Menu</span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -75,48 +60,56 @@
     </div>
 </section>
 
-<div class="container mt-4 mb-lg-5">
-    <div class="row align-items-center justify-content-center">
-        <div class="col-md-2">
-            <select class="form-select">
-                <option value="phone-type">Typ telefónu</option>
-                <!-- Možnosti tu: -->
+<div class="filters container mt-4 mb-lg-5">
+    <div class="row align-items-center justify-content-center mx-auto">
+        <div class="filter-part col-md-2">
+            <select class="form-select" id="phoneTypeSelect">
+                <option value="" disabled selected>Typ telefónu</option>
+                <option value="iPhone 11">iPhone 11</option>
+                <option value="iPhone 12">iPhone 12</option>
+                <option value="iPhone 13">iPhone 13</option>
             </select>
         </div>
-        <div class="col-md-2">
-            <select class="form-select">
-                <option value="material">Materiál</option>
-                <!-- Možnosti tu: -->
+        <div class="filter-part col-md-2">
+            <select class="form-select" id="materialSelect">
+                <option value="" disabled selected>Materiál</option>
+                <option value="plast">Plastové kryty</option>
+                <option value="silikon">Silikónové kryty</option>
             </select>
         </div>
-        <div class="col-md-2">
-            <select class="form-select">
-                <option value="color">Farba</option>
-                <!-- Možnosti tu: -->
+        <div class="filter-part col-md-2">
+            <select class="form-select" id="colorSelect">
+                <option value="" disabled selected>Farba</option>
+                <option value="biela">Biela</option>
+                <option value="cervena">Červená</option>
+                <option value="cierna">Čierna</option>
+                <option value="modra">Modrá</option>
+                <option value="ruzova">Ružová</option>
             </select>
         </div>
-        <div class="col-md-4">
+        <div class="filter-part col-md-2">
+            <select class="form-select" id="sortSelect">
+                <option value="" disabled selected>Usporiadať</option>
+                <option value="best">Najlepšie hodnotené</option>
+                <option value="lowest">Najnižšia cena</option>
+                <option value="highest">Najvyššia cena</option>
+            </select>
+        </div>
+        <div class="filter-part col-md-4">
             <label for="priceSlider" class="form-label">Cena</label>
             <input type="range" min="0" max="100" value="50" class="form-range" id="priceSlider">
+        </div>
+        <div class="button-part col-md-2">
+            <button class="btn btn-outline-dark" id="resetFiltersBtn">Obnoviť filtre</button>
         </div>
     </div>
 </div>
 
 <div class="container">
     <div class="row row-cols-1 row-cols-md-4 g-4">
-        <!-- Product cards here -->
         <div class="col">
-            <a href="productdetails.html" class="card">
-                <img src="../images/image1.jpg" class="card-img-top" alt="Product 1">
-                <div class="card-body">
-                    <h5 class="card-title">Product Name 1</h5>
-                    <p class="card-text">XX.XX€</p>
-                </div>
-            </a>
-        </div>
-        <div class="col">
-            <a href="productdetails.html" class="card">
-                <img src="../images/image1.jpg" class="card-img-top" alt="Product 1">
+            <a href="productdetails.html" class="card text-decoration-none">
+                <img src="../images/phonecase.jpg" class="card-img" alt="product">
                 <div class="card-body">
                     <h5 class="card-title">Názov produktu</h5>
                     <p class="card-text">XX.XX€</p>
@@ -124,8 +117,8 @@
             </a>
         </div>
         <div class="col">
-            <a href="producdetails.html" class="card">
-                <img src="../images/image1.jpg" class="card-img-top" alt="Product 1">
+            <a href="productdetails.html" class="card text-decoration-none">
+                <img src="../images/phonecase.jpg" class="card-img" alt="product">
                 <div class="card-body">
                     <h5 class="card-title">Názov produktu</h5>
                     <p class="card-text">XX.XX€</p>
@@ -133,8 +126,8 @@
             </a>
         </div>
         <div class="col">
-            <a href="productdetails.html" class="card">
-                <img src="../images/image1.jpg" class="card-img-top" alt="Product 1">
+            <a href="productdetails.html" class="card text-decoration-none">
+                <img src="../images/phonecase.jpg" class="card-img" alt="product">
                 <div class="card-body">
                     <h5 class="card-title">Názov produktu</h5>
                     <p class="card-text">XX.XX€</p>
@@ -142,8 +135,8 @@
             </a>
         </div>
         <div class="col">
-            <a href="productdetails.html" class="card">
-                <img src="../images/image1.jpg" class="card-img-top" alt="Product 1">
+            <a href="productdetails.html" class="card text-decoration-none">
+                <img src="../images/phonecase.jpg" class="card-img" alt="product">
                 <div class="card-body">
                     <h5 class="card-title">Názov produktu</h5>
                     <p class="card-text">XX.XX€</p>
@@ -151,8 +144,8 @@
             </a>
         </div>
         <div class="col">
-            <a href="productdetails.html" class="card">
-                <img src="../images/image1.jpg" class="card-img-top" alt="Product 1">
+            <a href="productdetails.html" class="card text-decoration-none">
+                <img src="../images/phonecase.jpg" class="card-img" alt="product">
                 <div class="card-body">
                     <h5 class="card-title">Názov produktu</h5>
                     <p class="card-text">XX.XX€</p>
@@ -160,8 +153,8 @@
             </a>
         </div>
         <div class="col">
-            <a href="productdetails.html" class="card">
-                <img src="../images/image1.jpg" class="card-img-top" alt="Product 1">
+            <a href="productdetails.html" class="card text-decoration-none">
+                <img src="../images/phonecase.jpg" class="card-img" alt="product">
                 <div class="card-body">
                     <h5 class="card-title">Názov produktu</h5>
                     <p class="card-text">XX.XX€</p>
@@ -169,8 +162,17 @@
             </a>
         </div>
         <div class="col">
-            <a href="productdetails.html" class="card">
-                <img src="../images/image1.jpg" class="card-img-top" alt="Product 1">
+            <a href="productdetails.html" class="card text-decoration-none">
+                <img src="../images/phonecase.jpg" class="card-img" alt="product">
+                <div class="card-body">
+                    <h5 class="card-title">Názov produktu</h5>
+                    <p class="card-text">XX.XX€</p>
+                </div>
+            </a>
+        </div>
+        <div class="col">
+            <a href="productdetails.html" class="card text-decoration-none">
+                <img src="../images/phonecase.jpg" class="card-img" alt="product">
                 <div class="card-body">
                     <h5 class="card-title">Názov produktu</h5>
                     <p class="card-text">XX.XX€</p>
@@ -180,8 +182,11 @@
     </div>
     <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center mt-4">
+            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
             <li class="page-item"><a class="page-link" href="#">1</a></li>
             <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
         </ul>
     </nav>
 </div>
@@ -195,19 +200,19 @@
                 <p style="font-size: 12px; margin: 0;">© 2024</p>
             </div>
             <div class="col-md-8 mt-3">
-                <ul class="list-unstyled d-flex justify-content-center justify-content-md-between align-items-center">
-                    <li class="me-3"><a href="#" class="text-dark fs-6 text-decoration-none me-lg-3">Kontakt</a></li>
-                    <li class="me-3"><a href="#" class="text-dark fs-6 text-decoration-none">Obchodné podmienky</a></li>
-                    <li class="me-3"><a href="#" class="text-dark fs-6 text-decoration-none">Reklamácie</a></li>
-                    <li class="ms-3"><a href="#" class="text-dark fs-6 text-decoration-none">F&Q</a></li>
+                <ul class="list-unstyled d-flex justify-content-md-between">
+                    <li class="footer-text me-3"><a href="footercontents.html" class="text-dark text-decoration-none me-lg-3">Kontakt</a></li>
+                    <li class="footer-text me-3"><a href="footercontents.html" class="text-dark text-decoration-none">Obchodné podmienky</a></li>
+                    <li class="footer-text me-3"><a href="footercontents.html" class="text-dark text-decoration-none">Reklamácie</a></li>
+                    <li class="footer-text ms-3"><a href="footercontents.html" class="text-dark text-decoration-none">F&Q</a></li>
                 </ul>
             </div>
         </div>
     </div>
 </footer>
 
-<!-- Kategórie menu -->
-<div id="sidebar">
+
+<div id="sidebar" class="sidebar">
     <div class="mt-3 text-center mb-3">
         <h6>Kategórie:</h6>
     </div>
@@ -224,9 +229,16 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script>
-    // Funkcia na objavenie sidebaru po kliknutí na kategórie
     document.getElementById('toggleSidebar').addEventListener('click', function() {
         document.getElementById('sidebar').classList.toggle('show');
+    });
+
+    document.getElementById('resetFiltersBtn').addEventListener('click', function() {
+        document.getElementById('phoneTypeSelect').selectedIndex = 0;
+        document.getElementById('materialSelect').selectedIndex = 0;
+        document.getElementById('colorSelect').selectedIndex = 0;
+        document.getElementById('sortSelect').selectedIndex = 0;
+        document.getElementById('priceSlider').value = 50;
     });
 </script>
 </body>

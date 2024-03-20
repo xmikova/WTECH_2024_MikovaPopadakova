@@ -3,22 +3,19 @@
     padding: 30px 0;
 }
 
-.filter-bar {
-    background-color: #f8f9fa;
-    padding: 20px;
-    margin-top: 20px;
-    border-bottom: 1px solid #ddd;
-}
-
 .card {
     background-color: rgba(255, 255, 255, 0.45);
+}
+
+.filter-part {
+    width: 210px;
 }
 
 .product-container .card {
     border: none;
 }
 
-.product-container .card-img-top {
+.product-container .card-img {
     height: 200px;
     object-fit: cover;
 }
@@ -27,11 +24,6 @@
     font-size: 16px;
     font-weight: bold;
     margin-bottom: 0;
-}
-
-.product-container .card-text {
-    font-size: 14px;
-    color: #6c757d;
 }
 
 .pagination {
@@ -44,7 +36,28 @@
     border: 1px solid black;
 }
 
-.pagination .page-item.active .page-link {
-    background-color: black;
-    border-color: black;
+@media (max-width: 1400px) {
+    .filter-part {
+        width: 150px;
+    }
+}
+
+@media (max-width: 992px) {
+    .filters{
+        margin-bottom: 20px;
+    }
+
+    .filter-part {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .filter-part{
+        margin-bottom: 20px;
+    }
+
+    .button-part {
+        text-align: center;
+    }
 }
