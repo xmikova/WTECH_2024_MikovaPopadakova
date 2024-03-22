@@ -8,25 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link href="../css/styles.css" rel="stylesheet">
     <link href="../css/payment.css" rel="stylesheet">
-    <style>
-        /* Sidebar style pre kategórie */
-        #sidebar {
-            position: fixed;
-            top: 0;
-            left: -250px;
-            height: 100%;
-            width: 250px;
-            background-color: #f8f9fa;
-            transition: left 0.3s ease-in-out;
-            z-index: 1000;
-        }
-        #sidebar.show {
-            left: 0;
-        }
-    </style>
 </head>
 <body>
-
 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -35,12 +18,12 @@
             <a class="navbar-brand" href="landingpage.html">GEEKGLAMOUR</a>
         </div>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false">
             <span class="navbar-toggler-icon"></span>
-            <span class="navbar-toggler-text">Menu</span>
+            <span class="navbar-toggler-text fs-6">Menu</span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse" id="navbarContent">
             <ul class="navbar-nav me-auto ms-5">
                 <li class="nav-item me-5">
                     <a class="nav-link" href="#" id="toggleSidebar">
@@ -59,14 +42,14 @@
                 </li>
             </ul>
             <form class="d-flex">
-                <input class="form-control me-3" type="search" placeholder="Zadajte hľadaný text" aria-label="Search">
+                <input class="form-control me-3" type="search" placeholder="Zadajte hľadaný text">
                 <button class="btn btn-outline-dark" type="submit">Hľadať</button>
             </form>
         </div>
     </div>
 </nav>
 
-<div id="sidebar">
+<div id="sidebar" class="sidebar">
     <div class="mt-3 text-center mb-3">
         <h6>Kategórie:</h6>
     </div>
@@ -91,10 +74,9 @@
     </div>
 </section>
 
-<section class="payment-container mt-5 col-md-6 mx-auto">
+<section class="payment-type-container mt-5 col-md-6 mx-auto">
     <div class="container row mb-3 justify-content-center">
         <div class="row mb-5">
-            <!-- Typ dopravy -->
             <div class="col-md-6 mx-auto">
                 <h3>Druh platby</h3>
                 <div class="form-check">
@@ -128,9 +110,9 @@
                     <h3>Zvolili ste:</h3>
                     <p>(zvolený druh platby)</p>
                     <p>info</p>
-                    <p>______________________________________________</p>
-                    <p>______________________________________________</p>
-                    <p>______________________________________________</p>
+                    <p class="text-break">______________________________________________</p>
+                    <p class="text-break">______________________________________________</p>
+                    <p class="text-break">______________________________________________</p>
                     <div class="buyNow ms-lg-3 text-center mt-5">
                         <h5 class="mb-0">Celková suma: €€€</h5>
                         <button class="btn btn-outline-dark" onclick="window.location.href = 'orderfinal.html';">Objednať s povinnosťou platby</button>
@@ -160,11 +142,8 @@
     </div>
 </footer>
 
-
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script>
-    // Funkcia na objavenie sidebaru po kliknutí na kategórie
     document.getElementById('toggleSidebar').addEventListener('click', function() {
         document.getElementById('sidebar').classList.toggle('show');
     });
