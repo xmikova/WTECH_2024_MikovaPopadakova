@@ -1,0 +1,115 @@
+.title-header {
+    background-color: rgba(255, 255, 255, 0.45);
+    padding: 30px 0;
+}
+.basket-container {
+    background-color: rgba(255, 255, 255, 0.45);
+    padding: 40px 0;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+}
+.buyNow h5 {
+    font-size: 1.5rem;
+    padding-bottom: 10px;
+}
+.buyNow button.btn {
+    font-size: 1.2rem;
+    padding: 0.5rem 1.5rem;
+}
+.product-background {
+    background-color: #ffffff;
+}
+footer {
+    margin-top: 50px;
+}
+
+.product-background {
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 1201px) {
+    .basket-container {
+        padding: 20px;
+        margin-right: 20px;
+        margin-left: 20px;
+    }
+    .product-background {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .div_img {
+        flex: 0 0 100%;
+        max-width: 50%;
+        padding-right: 20px;
+    }
+    .div_img img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+    .div_text{
+        flex: 0 0 50%;
+        max-width: 20%;
+        padding-left: 20px;
+    }
+    .div_button {
+        flex: 0 0 50%;
+        max-width: 20%;
+        padding-left: 20px;
+        margin-right: auto; /* Posun div_button doleva */
+        margin-left: 0; /* Reset margin-left */
+    }
+}
+
+@media (max-width: 993px) {
+    .div_img {
+        flex: 0 0 100%;
+        max-width: 50%;
+        padding-right: 20px;
+    }
+    .div_img img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+    .div_text{
+        flex: 0 0 50%;
+        max-width: 20%;
+        padding-left: 20px;
+    }
+    .div_button {
+        flex: 0 0 50%;
+        max-width: 20%;
+        padding-left: 20px;
+        margin-right: auto; /* Posun div_button doleva */
+        margin-left: 0; /* Reset margin-left */
+    }
+}
+
+@media (max-width: 597px) {
+    .product-background {
+        flex-direction: row;
+    }
+    .div_img,
+    .div_text,
+    .div_button {
+        flex-basis: 100%;
+        max-width: 100%;
+    }
+    button.btn {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .buyNow {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+}
+

@@ -1,0 +1,25 @@
+.title-header {
+    background-color: rgba(255, 255, 255, 0.45);
+    padding: 30px 0;
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.45);
+}
+
+.add-product-container {
+    background-color: rgba(255, 255, 255, 0.45);
+    padding: 20px 0;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+@media (max-width: 992px) {
+  .add-product-container{
+      padding-right: 20px;
+      padding-left: 20px;
+  }
+}

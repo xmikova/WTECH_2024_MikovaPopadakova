@@ -129,6 +129,9 @@
       <path value="$PROJECT_DIR$/laravel_app/vendor/symfony/translation-contracts" />
       <path value="$PROJECT_DIR$/laravel_app/vendor/theseer/tokenizer" />
       <path value="$PROJECT_DIR$/laravel_app/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/laravel_app/vendor/doctrine/dbal" />
+      <path value="$PROJECT_DIR$/laravel_app/vendor/doctrine/deprecations" />
+      <path value="$PROJECT_DIR$/laravel_app/vendor/psr/cache" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.2" />

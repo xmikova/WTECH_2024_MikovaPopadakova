@@ -1,0 +1,63 @@
+.category-header {
+    background-color: rgba(255, 255, 255, 0.45);
+    padding: 30px 0;
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.45);
+}
+
+.filter-part {
+    width: 210px;
+}
+
+.product-container .card {
+    border: none;
+}
+
+.product-container .card-img {
+    height: 200px;
+    object-fit: cover;
+}
+
+.product-container .card-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+.pagination {
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination .page-link {
+    color: black;
+    border: 1px solid black;
+}
+
+@media (max-width: 1400px) {
+    .filter-part {
+        width: 150px;
+    }
+}
+
+@media (max-width: 992px) {
+    .filters{
+        margin-bottom: 20px;
+    }
+
+    .filter-part {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .filter-part{
+        margin-bottom: 20px;
+    }
+
+    .button-part {
+        text-align: center;
+    }
+}

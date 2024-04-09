@@ -1,0 +1,122 @@
+.favorite-categories {
+    background-color: rgba(255, 255, 255, 0.45);
+    padding: 40px 0;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.category-item {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    white-space: nowrap;
+}
+
+.category-item img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.product-of-the-week {
+    background-color: rgba(255, 255, 255, 0.45);
+    padding: 40px 0;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.photo {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.buy-now h5 {
+    font-size: 1.5rem;
+    padding-bottom: 10px;
+}
+
+.buy-now button.btn {
+    font-size: 1.2rem;
+    padding: 0.5rem 1.5rem;
+}
+.recommended-items {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.45);
+    padding: 40px 0;
+    border-radius: 15px;
+}
+
+.scrollable-container {
+    overflow-x: hidden;
+    white-space: nowrap;
+}
+
+.product-card {
+    width: 200px;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.product-info {
+    text-align: center;
+}
+
+.navigation-arrows {
+    text-align: center;
+}
+
+.prev-btn,
+.next-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 5px 10px;
+    margin: 0 10px;
+}
+
+
+@media (max-width: 1200px) {
+    .favorite-categories,
+    .product-of-the-week,
+    .recommended-items {
+        padding: 20px 0;
+        margin: 20px;
+    }
+
+    .col-md-2 {
+        margin-right: 35px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hit-picture {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .hit-description {
+        margin-left: 0;
+        text-align: center;
+    }
+}
+
+
+@media (max-width: 348px) {
+    .hit {
+        font-size: 20px;
+    }
+}

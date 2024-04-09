@@ -1,0 +1,37 @@
+.title-header {
+    background-color: rgba(255, 255, 255, 0.45);
+    padding: 30px 0;
+}
+.payment-container {
+    background-color: rgba(255, 255, 255, 0.45);
+    padding: 40px 0;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.payment-type-container{
+    background-color: rgba(255, 255, 255, 0.45);
+    padding: 40px 0;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.buyNow h5 {
+    font-size: 1.5rem;
+    padding-bottom: 10px;
+
+}
+.buyNow button.btn {
+    font-size: 1.2rem;
+    padding: 0.5rem 1.5rem;
+    justify-content: center;
+}
+
+@media (max-width: 768px){
+    .payment-type-container{
+        padding-right: 50px;
+        padding-left: 50px;
+    }
+}

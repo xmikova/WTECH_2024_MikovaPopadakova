@@ -1,0 +1,14 @@
+.thank-you-container {
+    background-color: rgba(255, 255, 255, 0.45);
+    padding: 40px 0;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+}
+
+@media (max-width: 1200px) {
+    .thank-you-container {
+        padding: 20px 0;
+        margin: 20px;
+    }
+}

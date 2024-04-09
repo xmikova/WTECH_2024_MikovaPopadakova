@@ -1,0 +1,45 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(to right, #CE9C93, #DBE6F6);
+}
+
+footer {
+    width: 100%;
+    margin-top: auto;
+}
+
+.footer-text {
+    font-size: 18px;
+}
+
+.sidebar {
+    position: fixed;
+    left: -250px;
+    height: 100%;
+    width: 250px;
+    background-color: #f8f9fa;
+    transition: left 0.3s ease-in-out;
+    z-index: 1000;
+}
+
+.sidebar.show {
+    left: 0;
+}
+
+@media (max-width: 469px) {
+    .footer-text {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 364px) {
+    .footer-text {
+        font-size: 0.7rem;
+    }
+}

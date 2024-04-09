@@ -120,6 +120,9 @@
       <excludeFolder url="file://$MODULE_DIR$/laravel_app/vendor/vlucas/phpdotenv" />
       <excludeFolder url="file://$MODULE_DIR$/laravel_app/vendor/voku/portable-ascii" />
       <excludeFolder url="file://$MODULE_DIR$/laravel_app/vendor/webmozart/assert" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_app/vendor/doctrine/dbal" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_app/vendor/doctrine/deprecations" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_app/vendor/psr/cache" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
