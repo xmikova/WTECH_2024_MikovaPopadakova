@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container me-auto">
             <div class="mx-auto">
-                <a class="navbar-brand">GEEKGLAMOUR</a>
+                <a class="navbar-brand href="{{ route('landing') }}">GEEKGLAMOUR</a>
             </div>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false">
@@ -17,11 +17,26 @@
                             <i class="bi bi-list me-1"></i> Kategórie
                         </a>
                     </li>
-                    <li class="nav-item me-5">
-                        <a class="nav-link">
-                            <i class="bi bi-person"></i> Prihlásenie
-                        </a>
-                    </li>
+                    @if (Route::has('login'))
+                        <li class="nav-item me-5">
+                            @auth
+                                <a class="nav-link" href="{{ url('/dashboard') }}">
+                                    <i class="bi bi-person"></i> Dashboard
+                                </a>
+                            @else
+                                <a class="nav-link" href="{{ route('login') }}">
+                                    <i class="bi bi-person"></i> Prihlásenie
+                                </a>
+                        </li>
+                        <li class="nav-item me-5">
+                            @if (Route::has('register'))
+                                        <a class="nav-link" href="{{ route('register') }}">
+                                            <i class="bi bi-person-plus"></i> Registrácia
+                                        </a>
+                                    @endif
+                                @endauth
+                        </li>
+                    @endif
                     <li class="nav-item me-5">
                         <a class="nav-link">
                             <i class="bi bi-cart me-1"></i> Košík

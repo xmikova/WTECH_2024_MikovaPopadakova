@@ -1,15 +1,18 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
 {
-    public function showByCategory($category)
+    public function show($productId)
     {
-        $category = Category::where('name', $category)->firstOrFail(); // Assuming 'name' is the column storing category names
-        $products = $category->products()->get();
-        return view('products.category', compact('products', 'category'));
+        $product = Product::findOrFail($productId);
+        return view('product', compact('product'));
     }
+
+
 }
