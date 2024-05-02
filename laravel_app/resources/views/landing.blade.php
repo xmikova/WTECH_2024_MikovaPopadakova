@@ -14,34 +14,34 @@
     </div>
     <div class="row justify-content-center text-center">
         <div class="col-lg-3 col-md-6 mb-4">
-            <a class="text-decoration-none text-dark">
+            <a href="{{ route('products.category', ['category' => 'obaly-na-telefon']) }}" class="text-decoration-none text-dark">
                 <div class="category-item">
-                    <img src="{{ asset('images/products/telefon/telefon_modry.jpg') }}" alt="Obaly na telefón" class="img-fluid ">
+                    <img src="{{ asset('images/kategorie/telefon_kategoria.png') }}" alt="Obaly na telefón" class="img-fluid ">
                     <p class="mt-2">Obaly na telefón</p>
                 </div>
             </a>
         </div>
         <div class="col-lg-3 col-md-6 mb-4">
-            <a class="text-decoration-none text-dark">
+            <a href="{{ route('products.category', ['category' => 'obaly-na-sluchadla']) }}" class="text-decoration-none text-dark">
                 <div class="category-item">
-                    <img src="{{asset('images/products/telefon/telefon_modry.jpg') }}" alt="Obaly na slúchadlá" class="img-fluid">
+                    <img src="{{asset('images/kategorie/sluchadla_kategoria.jpg') }}" alt="Obaly na slúchadlá" class="img-fluid">
                     <p class="mt-2">Obaly na slúchadlá</p>
                 </div>
             </a>
         </div>
         <div class="w-100 d-md-none"></div>
         <div class="col-lg-3 col-md-6 mb-4">
-            <a class="text-decoration-none text-dark">
+            <a href="{{ route('products.category', ['category' => 'ochranne-folie-a-skla']) }}"  class="text-decoration-none text-dark">
                 <div class="category-item">
-                    <img src="{{ asset('images/products/telefon/telefon_modry.jpg') }}" alt="Ochranné fólie a sklá" class="img-fluid">
+                    <img src="{{ asset('images/kategorie/sklo_kategoria.jpg') }}" alt="Ochranné fólie a sklá" class="img-fluid">
                     <p class="mt-2">Ochranné fólie a sklá</p>
                 </div>
             </a>
         </div>
         <div class="col-lg-3 col-md-6 mb-4">
-            <a class="text-decoration-none text-dark">
+            <a href="{{ route('products.category', ['category' => 'obaly-na-laptop']) }}"  class="text-decoration-none text-dark">
                 <div class="category-item">
-                    <img src="{{ asset('images/products/telefon/telefon_modry.jpg') }}" alt="Obaly na laptop" class="img-fluid">
+                    <img src="{{ asset('images/kategorie/laptop_kategoria.jpg') }}" alt="Obaly na laptop" class="img-fluid">
                     <p class="mt-2">Obaly na laptop</p>
                 </div>
             </a>
@@ -87,12 +87,14 @@
                 <div class="scrollable-content d-flex">
                     @foreach($randomProducts as $product)
                         <div class="product-card">
-                            <div class="product-image">
-                                <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" style="width: 200px; height: auto;">
-                            </div>
-                            <div class="product-info">
-                                <p>{{ $product->name }}</p>
-                            </div>
+                            <a href="{{ route('products.show', ['productId' => $product->id]) }}">
+                                <div class="product-image">
+                                    <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" style="width: 200px; height: auto;">
+                                </div>
+                                <div class="product-info">
+                                    <p>{{ $product->name }}</p>
+                                </div>
+                            </a>
                         </div>
                     @endforeach
                 </div>

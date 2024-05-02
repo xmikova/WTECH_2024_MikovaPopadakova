@@ -20,8 +20,8 @@
                     @if (Route::has('login'))
                         <li class="nav-item me-5">
                             @auth
-                                <a class="nav-link" href="{{ url('/dashboard') }}">
-                                    <i class="bi bi-person"></i> Dashboard
+                                <a class="nav-link" href="{{ url('profile') }}">
+                                    <i class="bi bi-person"></i> Profil
                                 </a>
                             @else
                                 <a class="nav-link" href="{{ route('login') }}">
@@ -43,10 +43,11 @@
                         </a>
                     </li>
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-3" type="search" placeholder="Zadajte hľadaný text" aria-label="Search">
+                <form method="get" class="d-flex" action="{{ route('products.search') }}" >
+                    <input class="form-control me-3" type="search" placeholder="Zadajte hľadaný text" aria-label="Search" name="query">
                     <button class="btn btn-outline-dark" type="submit">Hľadať</button>
                 </form>
+
             </div>
         </div>
     </nav>
