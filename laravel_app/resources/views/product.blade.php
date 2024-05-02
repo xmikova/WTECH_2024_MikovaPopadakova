@@ -23,7 +23,7 @@
                         <h1 class="mb-3 mt-lg-4">{{ $product->name }}</h1>
                         <p class="mb-3">{{ $product->description }}</p>
                         <h4 class="mb-3">Cena: {{ $product->price }}€</h4>
-                        <form action="" method="POST">
+                        <form action="{{ route('cart.add', ['productId' => $product->id]) }}" method="POST">
                             @csrf
                             <button type="submit" id="add-to-cart" class="btn btn-outline-dark p-3">Pridať do košíka</button>
                         </form>

@@ -44,4 +44,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function shoppingCart()
+    {
+        return $this->hasOne(ShoppingCart::class);
+    }
 }

@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container me-auto">
             <div class="mx-auto">
-                <a class="navbar-brand href="{{ route('landing') }}">GEEKGLAMOUR</a>
+                <a class="navbar-brand" href="{{ route('landing') }}">GEEKGLAMOUR</a>
             </div>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false">
@@ -38,7 +38,7 @@
                         </li>
                     @endif
                     <li class="nav-item me-5">
-                        <a class="nav-link">
+                        <a class="nav-link" href="{{ route('cart.index') }}">
                             <i class="bi bi-cart me-1"></i> Košík
                         </a>
                     </li>
