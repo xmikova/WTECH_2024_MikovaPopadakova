@@ -43,7 +43,7 @@
                                 @csrf
                                 <button type="button" class="btn btn-outline-dark increment-btn" data-product-id="{{ $product->id }}">+</button>
                             </form>
-                            <span type="number" id="quantity-{{ $product->id }}" name="quantity">{{ $cartItem['quantity'] }}</span>
+                            <span type="number" id="quantity-{{ $product->id }}" name="quantity">{{ $cartItem['amount'] }}</span>
                             <form action="{{ route('cart.remove', $product->id) }}" method="POST">
                                 @csrf
                                 <button type="submit" class="btn btn-outline-dark">-</button>

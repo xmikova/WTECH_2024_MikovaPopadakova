@@ -19,7 +19,6 @@ class CartController extends Controller
         } else {
             $cartItems = Session::get('cart', []);
 
-            // Create a new ShoppingCart instance and set the items manually
             $cart = new ShoppingCart();
             $cart->setRelation('items', collect($cartItems));
 
@@ -80,7 +79,7 @@ class CartController extends Controller
 
             if ($existingCartItemKey !== null) {
                 // Increment the quantity of the existing product in the cart
-                $cartItems[$existingCartItemKey]['quantity'] += 1;
+                $cartItems[$existingCartItemKey]['amount'] += 1;
             } else {
                 // Add the product to the cart with quantity 1
                 $cartItems[] = [
@@ -100,49 +99,80 @@ class CartController extends Controller
 
     public function update(Request $request, $productId)
     {
-        // Retrieve the current quantity of the cart item
-        $cartItem = CartItem::where('product_id', $productId)->first();
+        if (Auth::check()) {
+            // Retrieve the current quantity of the cart item
+            $cartItem = CartItem::where('product_id', $productId)->first();
 
-        if ($cartItem) {
-            // Increment the quantity by one
-            $cartItem->increment('amount');
-        }
+            if ($cartItem) {
+                // Increment the quantity by one
+                $cartItem->increment('amount');
+            }
+        } else {
+            // If the user is not logged in, use session to store the cart item
+            $cartItems = Session::get('cart', []);
 
-        return redirect()->back();
-    }
+            // Check if the product exists in the cart
+            $existingCartItemKey = array_search($productId, array_column($cartItems, 'product_id'));
 
-    public function remove(Request $request, $productId)
-    {
-        $cart = $this->getCart();
-        $existingCartItem = $cart->items()->where('product_id', $productId)->first();
+            if ($existingCartItemKey !== false) {
+                // Increment the quantity of the existing product in the cart
+                $cartItems[$existingCartItemKey]['amount'] += 1;
 
-        if ($existingCartItem) {
-            if ($existingCartItem->amount > 1) {
-                $existingCartItem->decrement('amount');
-            } else {
-                $existingCartItem->delete();
+                // Store the updated cart items back into the session
+                Session::put('cart', $cartItems);
             }
         }
 
         return redirect()->back();
     }
+    public function remove(Request $request, $productId)
+    {
+        if (Auth::check()) {
+            $cart = $this->getCart();
+            $existingCartItem = $cart->items()->where('product_id', $productId)->first();
 
+            if ($existingCartItem) {
+                if ($existingCartItem->amount > 1) {
+                    $existingCartItem->decrement('amount');
+                } else {
+                    $existingCartItem->delete();
+                }
+            }
+
+            return redirect()->back();        } else {
+            // If the user is not logged in, use session to store the cart item
+            $cartItems = Session::get('cart', []);
+
+            // Check if the product exists in the cart
+            $existingCartItemKey = array_search($productId, array_column($cartItems, 'product_id'));
+
+            if ($existingCartItemKey !== false) {
+                if ($cartItems[$existingCartItemKey]['amount'] > 1) {
+                    // Decrement the quantity of the existing product in the cart
+                    $cartItems[$existingCartItemKey]['amount'] -= 1;
+                } else {
+                    // Remove the product from the cart
+                    unset($cartItems[$existingCartItemKey]);
+                }
+
+                // Store the updated cart items back into the session
+                Session::put('cart', $cartItems);
+            }
+        }
+
+        return redirect()->back();
+    }
 
     private function calculateTotalPrice($cartItems)
     {
         $totalPrice = 0;
         foreach ($cartItems as $cartItem) {
-            // Retrieve the product
-            $product = Product::find($cartItem['product_id']);
-
-            // Check if the product exists before accessing its properties
-            if ($product) {
-                $totalPrice += $product->price * $cartItem['quantity'];
+                $product = Product::find($cartItem['product_id']);
+                $price = $product ? $product->price : 0;
+                $totalPrice += $price * $cartItem['amount'];
             }
-        }
-        return $totalPrice;
+            return $totalPrice;
     }
-
 }
 
 
