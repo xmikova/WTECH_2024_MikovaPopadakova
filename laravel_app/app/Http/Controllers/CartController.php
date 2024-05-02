@@ -72,7 +72,7 @@ class CartController extends Controller
             $cartItem = Session::get('cart', []);
 
             // Check if the product already exists in the cart
-            if (array_key_exists($productId, $cartItem)) {
+            if (isset($cartItem[$productId])){
                 // Increment the quantity of the existing product in the cart
                 $cartItem[$productId]['quantity'] += 1;
             } else {
