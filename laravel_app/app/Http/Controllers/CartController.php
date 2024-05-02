@@ -17,17 +17,15 @@ class CartController extends Controller
         if (Auth::check()) {
             return Auth::user()->shoppingCart;
         } else {
-            $cart = Session::get('cart');
+            $cartItems = Session::get('cart', []);
 
-            // If $cart is null or not an instance of ShoppingCart, return a new instance
-            if (!$cart instanceof ShoppingCart) {
-                return new ShoppingCart();
-            }
+            // Create a new ShoppingCart instance and set the items manually
+            $cart = new ShoppingCart();
+            $cart->setRelation('items', collect($cartItems));
 
             return $cart;
         }
     }
-
 
     public function index()
     {
@@ -62,36 +60,43 @@ class CartController extends Controller
                 $cartItem = new CartItem([
                     'product_id' => $product->id,
                     'amount' => 1,
-                    'added_at' => now(),
+                    'added_at' => now()->toDateTimeString(), // Convert Carbon instance to string
                 ]);
 
                 $shoppingCart->items()->save($cartItem);
             }
         } else {
             // If the user is not logged in, use session to store the cart item
-            $cartItem = Session::get('cart', []);
+            $cartItems = Session::get('cart', []);
 
             // Check if the product already exists in the cart
-            if (isset($cartItem[$productId])){
+            $existingCartItemKey = null;
+            foreach ($cartItems as $key => $cartItem) {
+                if ($cartItem['product_id'] == $productId) {
+                    $existingCartItemKey = $key;
+                    break;
+                }
+            }
+
+            if ($existingCartItemKey !== null) {
                 // Increment the quantity of the existing product in the cart
-                $cartItem[$productId]['quantity'] += 1;
+                $cartItems[$existingCartItemKey]['quantity'] += 1;
             } else {
                 // Add the product to the cart with quantity 1
-                $cartItem[$productId] = [
+                $cartItems[] = [
                     'product_id' => $productId,
-                    'quantity' => 1,
-                    'added_at' => now(),
+                    'amount' => 1,
+                    'added_at' => now()->toDateTimeString(), // Convert Carbon instance to string
                 ];
             }
 
-            // Store the updated cart item back into the session
-            Session::put('cart', $cartItem);
+            // Store the updated cart items back into the session
+            Session::put('cart', $cartItems);
         }
 
-
+        // Redirect back to the previous page
         return redirect()->back()->with('success', 'Product added to cart successfully.');
     }
-
 
     public function update(Request $request, $productId)
     {
@@ -127,11 +132,16 @@ class CartController extends Controller
     {
         $totalPrice = 0;
         foreach ($cartItems as $cartItem) {
-            $totalPrice += $cartItem->product->price * $cartItem->amount;
+            // Retrieve the product
+            $product = Product::find($cartItem['product_id']);
+
+            // Check if the product exists before accessing its properties
+            if ($product) {
+                $totalPrice += $product->price * $cartItem['quantity'];
+            }
         }
         return $totalPrice;
     }
-
 
 }
 

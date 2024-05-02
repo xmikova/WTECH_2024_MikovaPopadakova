@@ -24,8 +24,8 @@ class CreateOrdersTable extends Migration
 
             $table->foreign('cart_id')->references('id')->on('shopping_carts')->onDelete('cascade');
             $table->foreign('customer_info_id')->references('id')->on('customer_infos')->onDelete('cascade');
-            $table->foreign('delivery_info_id')->references('id')->on('delivery_infos')->onDelete('cascade');
-            $table->foreign('payment_info_id')->references('id')->on('payment_infos')->onDelete('cascade');
+            $table->foreign('delivery_info_id')->references('id')->on('deliveries')->onDelete('cascade');
+            $table->foreign('payment_info_id')->references('id')->on('payments')->onDelete('cascade');
         });
     }
 

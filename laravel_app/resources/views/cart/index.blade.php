@@ -25,22 +25,26 @@
                 </div>
             @else
                 @foreach($cartItems as $cartItem)
+                    @php
+                        // Retrieve the product
+                        $product = \App\Models\Product::find($cartItem['product_id']);
+                    @endphp
                     <div class="product-background row mb-3 border rounded">
                         <div class="div_img col-2">
-                            <img src="{{ asset($cartItem->product->image) }}" alt="{{ $cartItem->product->name }}" class="img-fluid">
+                            <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" class="img-fluid">
                         </div>
                         <div class="div_text col-8">
-                            <h5><a href="{{ route('products.show', $cartItem->product->id) }}" class="product-link">{{ $cartItem->product->name }}</a></h5>
-                            <p>{{ $cartItem->product->description }}</p>
-                            <p>Cena: {{ $cartItem->product->price }}€</p>
+                            <h5><a href="{{ route('products.show', $product->id) }}" class="product-link">{{ $product->name }}</a></h5>
+                            <p>{{ $product->description }}</p>
+                            <p>Cena: {{ $product->price }}€</p>
                         </div>
                         <div class="div_button col-2 d-flex flex-column justify-content-around align-items-center">
-                            <form action="{{ route('cart.update', $cartItem->product->id) }}" method="POST">
+                            <form action="{{ route('cart.update', $product->id) }}" method="POST">
                                 @csrf
-                                <button type="button" class="btn btn-outline-dark increment-btn" data-product-id="{{ $cartItem->product->id }}">+</button>
+                                <button type="button" class="btn btn-outline-dark increment-btn" data-product-id="{{ $product->id }}">+</button>
                             </form>
-                            <span type="number" id="quantity-{{ $cartItem->product->id }}" name="quantity">{{ $cartItem->amount }}</span>
-                            <form action="{{ route('cart.remove', $cartItem->product->id) }}" method="POST">
+                            <span type="number" id="quantity-{{ $product->id }}" name="quantity">{{ $cartItem['quantity'] }}</span>
+                            <form action="{{ route('cart.remove', $product->id) }}" method="POST">
                                 @csrf
                                 <button type="submit" class="btn btn-outline-dark">-</button>
                             </form>

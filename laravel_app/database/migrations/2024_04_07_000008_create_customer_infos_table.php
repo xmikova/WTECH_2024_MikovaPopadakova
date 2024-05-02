@@ -13,7 +13,6 @@ class CreateCustomerInfosTable extends Migration
     {
         Schema::create('customer_infos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('user_id');
             $table->string('factural_name', 50);
             $table->string('factural_address', 50);
@@ -27,7 +26,6 @@ class CreateCustomerInfosTable extends Migration
             $table->string('billing_phone_number', 20);
             $table->timestamps();
 
-            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
