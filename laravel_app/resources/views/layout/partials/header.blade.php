@@ -38,7 +38,7 @@
                         </li>
                     @endif
                     <li class="nav-item me-5">
-                        <a class="nav-link">
+                        <a class="nav-link" href="{{ route('cart.index') }}">
                             <i class="bi bi-cart me-1"></i> Košík
                         </a>
                     </li>

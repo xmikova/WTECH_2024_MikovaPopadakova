@@ -20,14 +20,20 @@
 .product-background {
     background-color: #ffffff;
 }
-footer {
-    margin-top: 50px;
-}
 
 .product-background {
     padding: 20px;
     margin-bottom: 20px;
 }
+.cart-message {
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+
 
 @media (max-width: 1201px) {
     .basket-container {
