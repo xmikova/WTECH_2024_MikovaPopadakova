@@ -15,38 +15,62 @@ class ProductsTableSeeder extends Seeder
     public function run(): void
     {
         $phoneModels = ['iPhone 11', 'iPhone 12', 'Samsung Galaxy S20', 'Google Pixel 5', 'OnePlus 8'];
-        $imagePaths = [
+        $imagePathsPhone = [
             'images/products/telefon/telefon_cierny.jpg',
             'images/products/telefon/telefon_modry.jpg',
             'images/products/telefon/telefon_oranzovy.jpg',
             'images/products/telefon/telefon_ruzovy.jpg',
             'images/products/telefon/telefon_zlty.jpg',
         ];
-        $colors = ['cierna', 'modra', 'oranzova', 'ruzova', 'zlta'];
+        $colorsPhone = ['cierna', 'modra', 'oranzova', 'ruzova', 'zlta'];
 
-        // Get the category "Obaly na telefon"
-        $category = Category::where('name', 'Obaly na telefon')->first();
-
-        $colorIndex = 0; // Initialize color index
+        $colorIndex = 0;
 
         foreach ($phoneModels as $model) {
-            foreach ($imagePaths as $index => $imagePath) {
-                // Ensure the color index doesn't exceed the number of colors
-                $colorIndex = $colorIndex % count($colors);
+            foreach ($imagePathsPhone as $index => $imagePath) {
+                $colorIndex = $colorIndex % count($colorsPhone);
 
                 $product = Product::create([
-                    'name' => $model . ' Case',
-                    'description' => 'Protective case for ' . $model,
-                    'brand' => 'Brand',
+                    'name' => $model . ' obal',
+                    'description' => 'Ochranný obal pre ' . $model,
+                    'brand' => $model,
                     'device_type' => $model,
-                    'color' => $colors[$colorIndex],
-                    'price' => rand(20, 50), // Random price between 20 and 50
-                    'amount' => rand(5, 20), // Random amount between 5 and 20
+                    'color' => $colorsPhone[$colorIndex],
+                    'price' => rand(20, 50),
                     'image' => $imagePath,
                     'category_id' => 1
                 ]);
 
-                // Increment the color index for the next product
+                $colorIndex++;
+            }
+        }
+
+        $headphoneModels = ['Apple Airpods 1', 'Apple Airpods 2', 'Samsung Galaxy Buds 1', 'Apple Airpods Max', 'Xiaomi Redmi Buds'];
+        $imagePathsHeadphones = [
+            'images/products/sluchadla/sluchadla_cervene.jpg',
+            'images/products/sluchadla/sluchadla_cierne.jpg',
+            'images/products/sluchadla/sluchadla_cierne_koza.jpg',
+            'images/products/sluchadla/sluchadla_hnede_koza.jpg',
+        ];
+        $colorsHeadphones = ['cervena', 'cierna', 'cierna koza', 'hneda koza'];
+
+        $colorIndex = 0;
+
+        foreach ($headphoneModels as $model) {
+            foreach ($imagePathsHeadphones as $index => $imagePath) {
+                $colorIndex = $colorIndex % count($colorsHeadphones);
+
+                $product = Product::create([
+                    'name' => $model . ' Case',
+                    'description' => 'Protective case for ' . $model,
+                    'brand' => $model,
+                    'device_type' => $model,
+                    'color' => $colorsHeadphones[$colorIndex],
+                    'price' => rand(20, 50),
+                    'image' => $imagePath,
+                    'category_id' => 2
+                ]);
+
                 $colorIndex++;
             }
         }

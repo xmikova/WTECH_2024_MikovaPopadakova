@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\CategoryController;
@@ -7,13 +8,16 @@ use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('landing');
 });
 
 Route::get('/landing', [LandingController::class, 'index'])->name('landing');
+
 Route::get('/category/{category}', [CategoryController::class, 'showByCategory'])->name('products.category');
 
 Route::get('/products/{productId}', [ProductController::class, 'show'])->name('products.show');
+
+Route::get('/products', [ProductsController::class, 'searchProducts'])->name('products.search');
 
 
 Route::get('/dashboard', function () {

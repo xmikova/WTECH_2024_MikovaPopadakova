@@ -21,7 +21,6 @@ class CreateProductsTable extends Migration
             $table->string('color', 50);
             $table->float('price');
             $table->float('discount_price')->nullable();
-            $table->bigInteger('amount');
             $table->boolean('weekly_hit')->default(false);
             $table->unsignedInteger('category_id');
             $table->timestamps();

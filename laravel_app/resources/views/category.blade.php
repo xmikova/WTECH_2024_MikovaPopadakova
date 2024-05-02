@@ -12,8 +12,8 @@
                     <h4>
                         @if($category->id === 1)
                             Obaly na telefón
-                        @else
-                            {{ ucfirst($category->name) }}
+                        @elseif($category->id === 2)
+                            Obaly na slúchadlá
                         @endif
                     </h4>
                     <p>
@@ -57,11 +57,11 @@
                     </div>
                     <div class="filter-part col-md-2" style="display: flex; align-items: center;">
                         <label for="minPrice" class="mr-1" style="margin-bottom: 0; margin-right: 10px">Cena od:</label>
-                        <input type="number" class="form-control" style="width: 100px" id="minPrice" name="min_price" value="{{ $minPrice }}">
+                        <input type="number" class="form-control" style="width: 100px" id="minPrice" name="min_price" value="{{ $minPrice }}" min="{{ $minPrice }}" max="{{ $maxPrice }}">
                     </div>
                     <div class="filter-part col-md-2" style="display: flex; align-items: center;">
                         <label for="maxPrice" class="mr-1" style="margin-bottom: 0; margin-right: 10px">Cena do:</label>
-                        <input type="number" class="form-control" style="width: 100px" id="maxPrice" name="max_price" value="{{ $maxPrice }}">
+                        <input type="number" class="form-control" style="width: 100px" id="maxPrice" name="max_price" value="{{ $maxPrice }}" min="{{ $minPrice }}" max="{{ $maxPrice }}">
                     </div>
                 </div>
                 <div class="row justify-content-center mt-3">
