@@ -1,0 +1,115 @@
+@extends('layout.app')
+
+@section('customCss')
+    <link href="{{ asset('css/admintools.css') }}" rel="stylesheet" type="text/css">
+@endsection
+
+@section('content')
+    <section class="title-header mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col text-center">
+                    <h2>Vitaj, admin!</h2>
+                    <p>
+                        Tu môžete spravovať e-shop - pridávať, upravovať, či mazať produkty.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container mt-4">
+        <div class="row align-items-center justify-content-center mx-auto">
+            <div class="button-part col-md-4 col-sm-6 text-center mb-3">
+                <button id="productManagementBtn" class="btn btn-outline-dark">Správa produktov</button>
+            </div>
+            <div class="button-part col-md-4 col-sm-6 text-center mb-3">
+                <button id="addProductBtn" class="btn btn-outline-dark">Pridanie produktu</button>
+            </div>
+            <div class="button-part col-md-4 col-sm-6 text-center mb-3">
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" id="logOutBtn" class="btn btn-outline-dark">Odhlásiť sa</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="productManagement" class="container mt-4 mb-lg-5">
+        <div class="container">
+            <div class="container">
+                <div class="row row-cols-1 row-cols-md-4 g-4">
+                    @foreach($products as $product)
+                        <div class="col">
+                            <a href="{{ route('products.show', ['productId' => $product->id]) }}" class="card text-decoration-none">
+                                <img src="{{ asset($product->image) }}" class="card-img" alt="{{ $product->name }}">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ $product->name }}</h5>
+                                    <p class="card-text bi bi-pencil" style="font-size: larger;"> EDIT</p>
+                                </div>
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
+                <div class="pagination">
+                    {{ $products->links('pagination::bootstrap-4') }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="addProductForm" class="container mt-4 mb-lg-5" style="display: none;">
+        <h4 class="text-center mb-4">
+            Zadajte detaily produktu:
+        </h4>
+        <section class="add-product-container mb-5 col-md-6 mx-auto text-center">
+            <div class="mt-3">
+                <div class="mt-3">
+                    <div class="mb-3">
+                        <input type="title" class="add-form form-control me-3" placeholder="Názov produktu">
+                    </div>
+                    <div class="mb-3">
+                        <input type="type" class="add-form form-control me-3" placeholder="Typ produktu">
+                    </div>
+                    <div class="mb-3">
+                        <input type="about" class="add-form form-control me-3" placeholder="Popis">
+                    </div>
+                    <div class="mb-3">
+                        <input type="brand" class="add-form form-control me-3" placeholder="Značka">
+                    </div>
+                    <div class="mb-3">
+                        <input type="price" class="add-form form-control me-3" placeholder="Cena">
+                    </div>
+                    <div class="mb-3 input-group-append">
+                        <p>Nahrať fotografie:</p>
+                        <input type="file" class="add-form form-control" id="inputGroupFile01" multiple>
+                    </div>
+                </div>
+                <div class="buyNow">
+                    <button class="btn btn-outline-dark text-center px-lg-5">Pridať</button>
+                </div>
+            </div>
+        </section>
+    </div>
+@endsection
+
+@section('customJs')
+    <script>
+        const productManagementBtn = document.querySelector('#productManagementBtn');
+        const addProductBtn = document.querySelector('#addProductBtn');
+
+        const productManagementSection = document.querySelector('#productManagement');
+        const addProductFormSection = document.querySelector('#addProductForm');
+
+        productManagementBtn.addEventListener('click', () => {
+            productManagementSection.style.display = 'block';
+            addProductFormSection.style.display = 'none';
+        });
+
+        addProductBtn.addEventListener('click', () => {
+            productManagementSection.style.display = 'none';
+            addProductFormSection.style.display = 'block';
+        });
+
+    </script>
+@endsection

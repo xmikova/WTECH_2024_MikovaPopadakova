@@ -56,27 +56,28 @@
                 <h2 class="hit text-center mb-4">˗ˏˋ★ˎˊ˗ HIT TÝŽDNA ˗ˏˋ★ˎˊ˗</h2>
                 <div class="col-md-6 text-center">
                     <div class="hit-picture ms-xl-5">
-                        <img src="{{ asset('images/products/telefon/telefon_modry.jpg') }}" alt="Product of the Week" class="img-fluid" style="width: 350px; height:auto;">
+                        <img src="{{ asset($productOfTheWeek->image) }}" alt="Product of the Week" class="img-fluid" style="width: 350px; height:auto;">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="hit-description">
                         <a class="text-decoration-none text-dark">
-                            <h3>Názov produktu</h3>
+                            <h3>{{ $productOfTheWeek->name }}</h3>
                         </a>
-                        <p class="text-break">Popis produktu bude tuto:</p>
-                        <p class="text-break">______________________________________________</p>
-                        <p class="text-break">______________________________________________</p>
-                        <p class="text-break">______________________________________________</p>
+                        <p class="text-break">{{ $productOfTheWeek->description }}</p>
                         <div class="buy-now">
-                            <h5 class="mb-0">Cena: XX.XX€</h5>
-                            <a class="btn btn-outline-dark ps-4 pe-4">KÚPIŤ</a>
+                            <h5 class="mb-0">Cena: {{ $productOfTheWeek->price }}€</h5>
+                            <form action="{{ route('cart.add', ['productId' => $productOfTheWeek->id]) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-outline-dark ps-4 pe-4">KÚPIŤ</button>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
 
     <section class="recommended-items mt-xl-5 me-xl-5 ms-xl-5 mb-xl-5">
         <div class="container">

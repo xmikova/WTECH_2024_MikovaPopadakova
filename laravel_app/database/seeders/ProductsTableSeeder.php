@@ -74,5 +74,10 @@ class ProductsTableSeeder extends Seeder
                 $colorIndex++;
             }
         }
+
+        $product = Product::find(11);
+        if ($product) {
+            $product->update(['weekly_hit' => true]);
+        }
     }
 }
