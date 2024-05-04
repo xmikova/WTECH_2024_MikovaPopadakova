@@ -93,8 +93,8 @@ class CartPaymentController extends Controller
 
         if (Auth::check()) {
             $user = Auth::user();
-            $user->shoppingCart->items()->delete(); // Delete cart items
-            $user->shoppingCart->delete(); // Delete the shopping cart
+            $user->shoppingCart->user_id = null;
+            $user->shoppingCart->save();
         }
 
         return Redirect::route('payment.thankyou', ['order_id' => $order->id]);

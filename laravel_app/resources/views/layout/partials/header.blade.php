@@ -35,6 +35,7 @@
                                 </a>
                             @endauth
                         </li>
+                        @guest <!-- Only show the registration link if the user is a guest (not logged in) -->
                         <li class="nav-item me-5">
                             @if (Route::has('register'))
                                 <a class="nav-link" href="{{ route('register') }}">
@@ -42,6 +43,7 @@
                                 </a>
                             @endif
                         </li>
+                        @endguest
                     @endif
                     <li class="nav-item me-5">
                         <a class="nav-link" href="{{ route('cart.index') }}">
