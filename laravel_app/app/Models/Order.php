@@ -10,8 +10,9 @@ class Order extends Model
     protected $fillable = [
         'cart_id',
         'customer_info_id',
-        'delivery_info_id',
-        'payment_info_id',
+        'delivery_id',
+        'payment_id',
+        'pickupPlace',
         'totalPrice',
         'createdAt',
         'state'
@@ -19,20 +20,20 @@ class Order extends Model
 
     public function cart()
     {
-        return $this->belongsTo(ShoppingCart::class);
+        return $this->belongsTo(ShoppingCart::class, 'cart_id');
     }
 
     public function customerInfo()
     {
-        return $this->belongsTo(CostumerInfo::class);
+        return $this->belongsTo(CustomerInfo::class);
     }
 
-    public function deliveryInfo()
+    public function delivery()
     {
         return $this->belongsTo(Delivery::class);
     }
 
-    public function paymentInfo()
+    public function payment()
     {
         return $this->belongsTo(Payment::class);
     }

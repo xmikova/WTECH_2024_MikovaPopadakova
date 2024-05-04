@@ -13,7 +13,7 @@ class CreateCustomerInfosTable extends Migration
     {
         Schema::create('customer_infos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();;
             $table->string('factural_name', 50);
             $table->string('factural_address', 50);
             $table->string('factural_postal_code', 12);

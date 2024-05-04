@@ -15,7 +15,6 @@ class CreateCartItemsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('product_id');
             $table->bigInteger('amount');
-            $table->dateTime('added_at');
             $table->timestamps();
 
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');

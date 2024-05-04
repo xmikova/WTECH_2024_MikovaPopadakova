@@ -15,8 +15,10 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->unsignedBigInteger('cart_id');
             $table->unsignedBigInteger('customer_info_id');
-            $table->unsignedBigInteger('delivery_info_id');
-            $table->unsignedBigInteger('payment_info_id');
+            $table->unsignedBigInteger('delivery_id');
+            $table->unsignedBigInteger('payment_id');
+            $table->string('pickupPlace', 50)->nullable();
+
             $table->float('totalPrice');
             $table->dateTime('createdAt');
             $table->timestamps();
@@ -24,8 +26,8 @@ class CreateOrdersTable extends Migration
 
             $table->foreign('cart_id')->references('id')->on('shopping_carts')->onDelete('cascade');
             $table->foreign('customer_info_id')->references('id')->on('customer_infos')->onDelete('cascade');
-            $table->foreign('delivery_info_id')->references('id')->on('deliveries')->onDelete('cascade');
-            $table->foreign('payment_info_id')->references('id')->on('payments')->onDelete('cascade');
+            $table->foreign('delivery_id')->references('id')->on('deliveries')->onDelete('cascade');
+            $table->foreign('payment_id')->references('id')->on('payments')->onDelete('cascade');
         });
     }
 

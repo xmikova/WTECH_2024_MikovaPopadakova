@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CartDeliveryController;
+use App\Http\Controllers\CartPaymentController;
+use App\Http\Controllers\FooterController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LandingController;
@@ -36,8 +41,6 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 
-
-
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart/add/{productId}', [CartController::class, 'add'])->name('cart.add');
 Route::post('/cart/update/{productId}', [CartController::class, 'update'])->name('cart.update');
@@ -45,13 +48,11 @@ Route::post('/cart/remove/{productId}', [CartController::class, 'remove'])->name
 
 
 Route::get('/delivery', [CartDeliveryController::class, 'index'])->name('delivery.index');
-Route::post('/delivery/store', [CartDeliveryController::class, 'storeDelivery'])->name('delivery.store');
+Route::post('/delivery/store', [CartDeliveryController::class, 'store'])->name('delivery.store');
 
 Route::get('/payment', [CartPaymentController::class, 'index'])->name('payment.index');
-Route::post('/payment/store', [CartPaymentController::class, 'storePayment'])->name('payment.store');
+Route::post('/order', [CartPaymentController::class, 'order'])->name('payment.order');
 
-Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
-
-
+Route::get('/thankyou/{order_id}', [CartPaymentController::class, 'thankYou'])->name('payment.thankyou');
 
 require __DIR__.'/auth.php';

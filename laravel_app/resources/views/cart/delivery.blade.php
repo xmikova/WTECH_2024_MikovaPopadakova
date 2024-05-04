@@ -23,26 +23,26 @@
                     <div class="col-md-6 mx-auto">
                         <h3>Fakturačné údaje</h3>
                         <div class="mb-3">
-                            <label for="billing_name" class="form-label">Meno a Priezvisko</label>
+                            <label for="factural_name" class="form-label">Meno a Priezvisko</label>
                             <input type="text" class="form-control" name="factural_name" id="factural_name"  placeholder="Meno a Priezvisko">
                         </div>
                         <div class="mb-3">
-                            <label for="billing_address" class="form-label">Adresa</label>
+                            <label for="factural_address" class="form-label">Adresa</label>
                             <input type="text" class="form-control" name="factural_address" id="factural_address"  placeholder="Adresa">
                         </div>
                         <div class="row mb-3">
                             <div class="col">
-                                <label for="billing_postal_code" class="form-label">PSČ</label>
+                                <label for="factural_postal_code" class="form-label">PSČ</label>
                                 <input type="text" class="form-control" name="factural_postal_code" id="factural_postal_code"  placeholder="PSČ">
                             </div>
                             <div class="col">
-                                <label for="billing_city" class="form-label">Mesto</label>
+                                <label for="factural_city" class="form-label">Mesto</label>
                                 <input type="text" class="form-control" name="factural_city" id="factural_city"  placeholder="Mesto">
                             </div>
                         </div>
                         <div>
                             <div class="mb-3">
-                                <label for="billing_phone_number" class="form-label">Telefónne číslo</label>
+                                <label for="factural_phone_number" class="form-label">Telefónne číslo</label>
                                 <input type="tel" class="form-control" name="factural_phone_number" id="factural_phone_number" placeholder="Telefónne číslo">
                             </div>
                             <div class="mb-3 form-check">
@@ -54,20 +54,20 @@
                     <div class="col-md-6">
                         <h3>Dodacie údaje</h3>
                         <div class="mb-3">
-                            <label for="factural_name" class="form-label">Meno a Priezvisko</label>
+                            <label for="billing_name" class="form-label">Meno a Priezvisko</label>
                             <input type="text" class="form-control" name="billing_name" id="billing_name" placeholder="Meno a Priezvisko">
                         </div>
                         <div class="mb-3">
-                            <label for="factural_address" class="form-label">Adresa</label>
+                            <label for="billing_address" class="form-label">Adresa</label>
                             <input type="text" class="form-control" name="billing_address" id="billing_address" placeholder="Adresa">
                         </div>
                         <div class="row mb-3">
                             <div class="col">
-                                <label for="factural_postal_code" class="form-label">PSČ</label>
+                                <label for="billing_postal_code" class="form-label">PSČ</label>
                                 <input type="text" class="form-control" name="billing_postal_code" id="billing_postal_code" placeholder="PSČ">
                             </div>
                             <div class="col">
-                                <label for="factural_city" class="form-label">Mesto</label>
+                                <label for="billing_city" class="form-label">Mesto</label>
                                 <input type="text" class="form-control" name="billing_city" id="billing_city" placeholder="Mesto">
                             </div>
                         </div>
@@ -82,19 +82,19 @@
                     <div class="col-md-6 mx-auto">
                         <h3>Typ dopravy</h3>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="shippingType" id="personalPickup" value="personalPickup">
+                            <input class="form-check-input" type="radio" name="shippingType" id="personalPickup" value="osobnyodber">
                             <label class="form-check-label" for="personalPickup">
                                 Osobný odber - zdarma
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="shippingType" id="zBox" value="zBox">
+                            <input class="form-check-input" type="radio" name="shippingType" id="zBox" value="zbox">
                             <label class="form-check-label" for="zBox">
                                 Z-BOX - 3 €
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="shippingType" id="courier" value="courier">
+                            <input class="form-check-input" type="radio" name="shippingType" id="courier" value="kurier">
                             <label class="form-check-label" for="courier">
                                 Kurier - 3,50 €
                             </label>
@@ -107,11 +107,11 @@
                                 Vyber predajňu
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="storeDropdown">
-                                <li><a class="dropdown-item" href="#" data-value="Bratislava">Bratislava</a></li>
-                                <li><a class="dropdown-item" href="#" data-value="Košice">Košice</a></li>
-                                <li><a class="dropdown-item" href="#" data-value="Žilina">Žilina</a></li>
-                                <li><a class="dropdown-item" href="#" data-value="Nitra">Nitra</a></li>
-                                <li><a class="dropdown-item" href="#" data-value="Trnava">Trnava</a></li>
+                                <li><span class="dropdown-item clickable" data-value="Bratislava">Bratislava</span></li>
+                                <li><span class="dropdown-item clickable" data-value="Košice">Košice</span></li>
+                                <li><span class="dropdown-item clickable" data-value="Žilina">Žilina</span></li>
+                                <li><span class="dropdown-item clickable" data-value="Nitra">Nitra</span></li>
+                                <li><span class="dropdown-item clickable" data-value="Trnava">Trnava</span></li>
                             </ul>
                         </div>
                     </div>
@@ -128,54 +128,57 @@
     <script>
         document.querySelectorAll('.dropdown-item').forEach(item => {
             item.addEventListener('click', function() {
-                const selectedValue = this.getAttribute('data-value');
-                document.getElementById('storeDropdown').innerText = selectedValue;
+                document.getElementById('storeDropdown').innerText = this.getAttribute('data-value');
             });
         });
 
         document.querySelectorAll('input[name="shippingType"]').forEach(function(radioButton) {
             radioButton.addEventListener('change', function() {
-                if (this.value === 'personalPickup' && this.checked) {
+                if (this.value === 'osobnyodber' && this.checked) {
                     document.getElementById('storeSelection').style.display = 'block'; // Show the store selection
                 } else {
                     document.getElementById('storeSelection').style.display = 'none'; // Hide the store selection
                 }
             });
         });
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Select the form element
-            var form = document.getElementById('deliveryForm');
 
-            // Add form submission event listener
-            form.addEventListener('submit', function(event) {
-                // Prevent the default form submission behavior
-                event.preventDefault();
+        const clickableItems = document.querySelectorAll('.clickable');
 
-                // Create a new FormData object to store form data
-                var formData = new FormData(form);
+        // Add click event listener to each clickable item
+        clickableItems.forEach(item => {
+            item.addEventListener('click', function() {
+                // Get the value of the clicked item
+                const selectedValue = this.getAttribute('data-value');
 
-                // Submit the form data asynchronously using AJAX
-                fetch(form.action, {
-                    method: 'POST',
-                    body: formData
-                })
-                    .then(response => {
-                        // Check if the form submission was successful
-                        if (response.ok) {
-                            // Redirect the user to the payment page
-                            window.location.href = "{{ route('payment.index') }}";
-                        } else {
-                            // Handle errors if any
-                            console.error('Form submission failed:', response.statusText);
-                        }
-                    })
-                    .catch(error => {
-                        // Handle any network errors
-                        console.error('Error occurred during form submission:', error);
-                    });
+                // Update the button text with the selected value
+                document.getElementById('storeDropdown').innerText = selectedValue;
+
+                // Optionally, you can store the selected value in a hidden input field if needed
+                document.getElementById('selectedStore').value = selectedValue;
             });
+        });
+
+        // Add event listener to the checkbox for same address
+        var sameAddressCheckbox = document.getElementById('sameAddress');
+        sameAddressCheckbox.addEventListener('change', function() {
+            var factualAddress = document.getElementById('factural_address').value;
+            var factualPostalCode = document.getElementById('factural_postal_code').value;
+            var factualCity = document.getElementById('factural_city').value;
+
+            // If checkbox is checked, fill billing address fields with factual address
+            if (this.checked) {
+                document.getElementById('billing_name').value = document.getElementById('factural_name').value;
+                document.getElementById('billing_address').value = factualAddress;
+                document.getElementById('billing_postal_code').value = factualPostalCode;
+                document.getElementById('billing_city').value = factualCity;
+            } else {
+                // If checkbox is unchecked, clear billing address fields
+                document.getElementById('billing_name').value = '';
+                document.getElementById('billing_address').value = '';
+                document.getElementById('billing_postal_code').value = '';
+                document.getElementById('billing_city').value = '';
+            }
         });
     </script>
 @endsection
+

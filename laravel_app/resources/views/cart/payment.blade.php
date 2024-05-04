@@ -15,31 +15,22 @@
         </div>
     </section>
 
-    <form id="paymentForm" action="{{ route('payment.store') }}"  method="POST">
+    <form id="paymentForm" action="{{ route('payment.order') }}"  method="POST">
         @csrf
         <section class="payment-type-container mt-5 col-md-6 mx-auto">
             <div class="container row mb-3 justify-content-center">
                 <div class="row mb-5">
                     <div class="col-md-6 mx-auto">
                         <h3>Druh platby</h3>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="paymentType" id="personalcollection" value="personalcollection">
-                            <label class="form-check-label" for="personalcollection">
-                                pri prevzatí (osobný odber)
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="paymentType" id="cashondelivery" value="cashondelivery">
-                            <label class="form-check-label" for="cash on delivery">
-                                dobierka - 1 €
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="paymentType" id="card" value="card">
-                            <label class="form-check-label" for="card">
-                                kartou online
-                            </label>
-                        </div>
+                        <!-- Loop through payment methods retrieved from the database -->
+                        @foreach($payments as $payment)
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="paymentType" id="{{ $payment->type }}" value="{{ $payment->type }}">
+                                <label class="form-check-label" for="{{ $payment->type }}">
+                                    {{ $payment->type }} @if($payment->price > 0) - {{ $payment->price }} €@endif
+                                </label>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -51,7 +42,7 @@
                     <div class="col-md-6 mx-auto">
                         <div class="mt-3">
                             <h3>Zvolili ste:</h3>
-                            <p>(zvolený druh platby)</p>
+                            <p id="selectedPayment">(zvolený druh platby)</p>
                             <p>info</p>
                             <p class="text-break">______________________________________________</p>
                             <p class="text-break">______________________________________________</p>
@@ -67,3 +58,15 @@
         </section>
     </form>
 @endsection
+
+
+@section('customJs')
+    <script>
+        // Add event listener to payment radio buttons
+        document.querySelectorAll('input[name="paymentType"]').forEach(function(radioButton) {
+            radioButton.addEventListener('change', function() {
+                // Update the selected payment display with the selected value
+                document.getElementById('selectedPayment').innerText = this.value;
+            });
+        });
+    </script>@endsection
