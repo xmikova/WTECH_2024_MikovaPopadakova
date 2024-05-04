@@ -7,10 +7,10 @@
             </div>
             <div class="col-md-8 mt-3">
                 <ul class="list-unstyled d-flex justify-content-md-between">
-                    <li class="footer-text me-3"><a class="text-dark text-decoration-none me-lg-3">Kontakt</a></li>
-                    <li class="footer-text me-3"><a class="text-dark text-decoration-none">Obchodné podmienky</a></li>
-                    <li class="footer-text me-3"><a class="text-dark text-decoration-none">Reklamácie</a></li>
-                    <li class="footer-text ms-3"><a class="text-dark text-decoration-none">F&Q</a></li>
+                    <li class="footer-text me-3"><a href="{{ route('footer.contents') }}" class="text-dark text-decoration-none me-lg-3">Kontakt</a></li>
+                    <li class="footer-text me-3"><a href="{{ route('footer.contents') }}" class="text-dark text-decoration-none">Obchodné podmienky</a></li>
+                    <li class="footer-text me-3"><a href="{{ route('footer.contents') }}" class="text-dark text-decoration-none">Reklamácie</a></li>
+                    <li class="footer-text ms-3"><a href="{{ route('footer.contents') }}" class="text-dark text-decoration-none">F&Q</a></li>
                 </ul>
             </div>
         </div>

@@ -17,6 +17,11 @@
     text-align: center;
 }
 
+.pagination {
+    justify-content: center;
+    margin-top: 20px;
+}
+
 @media (max-width: 992px) {
   .add-product-container{
       padding-right: 20px;

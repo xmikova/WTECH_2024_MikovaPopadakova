@@ -24,7 +24,7 @@ class Order extends Model
 
     public function customerInfo()
     {
-        return $this->belongsTo(CustomerInfo::class);
+        return $this->belongsTo(CostumerInfo::class);
     }
 
     public function deliveryInfo()

@@ -20,21 +20,27 @@
                     @if (Route::has('login'))
                         <li class="nav-item me-5">
                             @auth
-                                <a class="nav-link" href="{{ url('profile') }}">
-                                    <i class="bi bi-person"></i> Profil
-                                </a>
+                                @if(Auth::user()->role === 'admin')
+                                    <a class="nav-link" href="{{ route('admin') }}">
+                                        <i class="bi bi-person"></i> Admin
+                                    </a>
+                                @else
+                                    <a class="nav-link" href="{{ url('profile') }}">
+                                        <i class="bi bi-person"></i> Profil
+                                    </a>
+                                @endif
                             @else
                                 <a class="nav-link" href="{{ route('login') }}">
                                     <i class="bi bi-person"></i> Prihlásenie
                                 </a>
+                            @endauth
                         </li>
                         <li class="nav-item me-5">
                             @if (Route::has('register'))
-                                        <a class="nav-link" href="{{ route('register') }}">
-                                            <i class="bi bi-person-plus"></i> Registrácia
-                                        </a>
-                                    @endif
-                                @endauth
+                                <a class="nav-link" href="{{ route('register') }}">
+                                    <i class="bi bi-person-plus"></i> Registrácia
+                                </a>
+                            @endif
                         </li>
                     @endif
                     <li class="nav-item me-5">

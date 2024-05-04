@@ -1,8 +1,5 @@
 <?php
 
-use App\Http\Controllers\CartDeliveryController;
-use App\Http\Controllers\CartPaymentController;
-use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LandingController;
@@ -16,6 +13,7 @@ Route::get('/', function () {
 });
 
 Route::get('/landing', [LandingController::class, 'index'])->name('landing');
+Route::get('/footer-contents', [FooterController::class, 'index'])->name('footer.contents');
 
 Route::get('/category/{category}', [CategoryController::class, 'showByCategory'])->name('products.category');
 
@@ -32,7 +30,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::put('/products/{product}', [ProductController::class, 'update'])->name('product.update');
+
 });
+
+Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+
 
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');

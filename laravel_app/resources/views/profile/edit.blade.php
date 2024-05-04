@@ -76,10 +76,6 @@
 
 @section('customJs')
     <script>
-        document.getElementById('toggleSidebar').addEventListener('click', function() {
-            document.getElementById('sidebar').classList.toggle('show');
-        });
-
         const myOrdersBtn = document.querySelector('#myOrdersBtn');
         const myDataBtn = document.querySelector('#myDataBtn');
 
