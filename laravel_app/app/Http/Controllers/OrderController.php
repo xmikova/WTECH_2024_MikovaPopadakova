@@ -30,7 +30,7 @@ class OrderController extends Controller
             'customer_info_id' => $customerInfoId,
             'delivery_info_id' => $deliveryInfoId,
             'payment_info_id' => $paymentInfoId,
-            'totalPrice' => $this->calculateTotalPrice($cartItems),
+            'totalPrice' => $this->calculateTotalPrice(),
             'createdAt' => now()->toDateTimeString(),
             'state' => 'pending', // Set the initial state of the order
         ]);
