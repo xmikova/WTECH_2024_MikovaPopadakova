@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Delivery extends Model
 {
-    protected $fillable = ['type', 'price'];
+    protected $fillable = ['type'];
 
     public function orders()
     {

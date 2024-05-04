@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\CartDeliveryController;
+use App\Http\Controllers\CartPaymentController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LandingController;
@@ -36,5 +39,16 @@ Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart/add/{productId}', [CartController::class, 'add'])->name('cart.add');
 Route::post('/cart/update/{productId}', [CartController::class, 'update'])->name('cart.update');
 Route::post('/cart/remove/{productId}', [CartController::class, 'remove'])->name('cart.remove');
+
+
+Route::get('/delivery', [CartDeliveryController::class, 'index'])->name('delivery.index');
+Route::post('/delivery/store', [CartDeliveryController::class, 'storeDelivery'])->name('delivery.store');
+
+Route::get('/payment', [CartPaymentController::class, 'index'])->name('payment.index');
+Route::post('/payment/store', [CartPaymentController::class, 'storePayment'])->name('payment.store');
+
+Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
+
+
 
 require __DIR__.'/auth.php';

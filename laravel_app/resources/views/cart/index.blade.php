@@ -17,7 +17,7 @@
 
     <section class="basket-container mt-5 mt-xl-5 me-xl-5 ms-xl-5">
         <div class="container">
-            @if($cartItems->isEmpty())
+            @if(empty($cartItems))
                 <div class="row mb-3 justify-content-center">
                     <div class="col text-center">
                         <p>The basket is empty.</p>
@@ -54,9 +54,9 @@
                 <div class="row mb-3 justify-content-center">
                     <div class="buyNow ms-lg-3 text-center">
                         <h5>Celková cena: {{ $totalPrice }}€</h5>
-                        <form action="" method="POST">
+                        <form action="{{ route('delivery.index') }}" method="GET">
                             @csrf
-                            <button type="submit" id="add-to-cart" class="btn btn-outline-dark p-3" >Pokračovať k doprave</button>
+                            <button type="submit" id="delivery-button" class="btn btn-outline-dark p-3" >Pokračovať k doprave</button>
                         </form>
                     </div>
                 </div>

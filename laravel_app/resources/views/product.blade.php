@@ -36,6 +36,10 @@
 
 @section('customJs')
     <script>
+        document.getElementById('toggleSidebar').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.toggle('show');
+        });
+
         document.addEventListener("DOMContentLoaded", function() {
             const mainImage = document.getElementById("main-image");
             const thumbnails = document.querySelectorAll(".thumbnail");

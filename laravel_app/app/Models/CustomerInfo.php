@@ -10,7 +10,6 @@ class CustomerInfo extends Model
     use HasFactory;
 
     protected $fillable = [
-        'order_id',
         'user_id',
         'factural_name',
         'factural_address',
@@ -21,13 +20,7 @@ class CustomerInfo extends Model
         'billing_address',
         'billing_postal_code',
         'billing_city',
-        'billing_phone_number',
     ];
-
-    public function order()
-    {
-        return $this->belongsTo(Order::class);
-    }
 
     public function user()
     {

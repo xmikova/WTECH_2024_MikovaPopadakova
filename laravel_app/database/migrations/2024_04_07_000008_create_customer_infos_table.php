@@ -23,7 +23,6 @@ class CreateCustomerInfosTable extends Migration
             $table->string('billing_address', 50);
             $table->string('billing_postal_code', 12);
             $table->string('billing_city', 50);
-            $table->string('billing_phone_number', 20);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
