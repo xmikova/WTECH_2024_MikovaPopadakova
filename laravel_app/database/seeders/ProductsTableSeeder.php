@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductImage;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -41,6 +42,13 @@ class ProductsTableSeeder extends Seeder
                     'category_id' => 1
                 ]);
 
+                for ($i = 0; $i < 4; $i++) {
+                    ProductImage::create([
+                        'product_id' => $product->id,
+                        'image_path' => $imagePath,
+                    ]);
+                }
+
                 $colorIndex++;
             }
         }
@@ -61,8 +69,8 @@ class ProductsTableSeeder extends Seeder
                 $colorIndex = $colorIndex % count($colorsHeadphones);
 
                 $product = Product::create([
-                    'name' => $model . ' Case',
-                    'description' => 'Protective case for ' . $model,
+                    'name' => $model . ' obal',
+                    'description' => 'Ochranný obal pre ' . $model,
                     'brand' => $model,
                     'device_type' => $model,
                     'color' => $colorsHeadphones[$colorIndex],
@@ -70,6 +78,13 @@ class ProductsTableSeeder extends Seeder
                     'image' => $imagePath,
                     'category_id' => 2
                 ]);
+
+                for ($i = 0; $i < 4; $i++) {
+                    ProductImage::create([
+                        'product_id' => $product->id,
+                        'image_path' => $imagePath,
+                    ]);
+                }
 
                 $colorIndex++;
             }

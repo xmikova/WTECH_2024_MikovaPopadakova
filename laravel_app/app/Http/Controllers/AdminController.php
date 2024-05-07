@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\ProductImage;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,24 +19,50 @@ class AdminController extends Controller
         return view('admin', compact('products'));
     }
 
-    public function update(Request $request, Product $product)
+    public function store(Request $request)
     {
-        // Check if the user is authorized to update the product (only admin can update)
-        if (!Auth::check() || Auth::user()->role !== 'admin') {
-            return redirect()->back()->with('error', 'You are not authorized to perform this action.');
-        }
-
-        // Validate the request data
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            // Add validation rules for other fields if needed
+        $request->validate([
+            'name' => 'required|string|max:256',
+            'device_type' => 'required|string|max:50',
+            'description' => 'required|string|max:1000',
+            'brand' => 'required|string|max:50',
+            'price' => 'required|numeric',
+            'weekly_hit' => 'required|boolean',
+            'category_id' => 'required|integer|exists:categories,id',
+            'color' => 'required|string|max:50',
+            'image' => 'required|array|max:4',
+            'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        // Update the product with the validated data
-        $product->update($validatedData);
+        $product = new Product;
+        $product->name = $request->name;
+        $product->device_type = $request->device_type;
+        $product->description = $request->description;
+        $product->brand = $request->brand;
+        $product->price = $request->price;
+        $product->weekly_hit = $request->weekly_hit;
+        $product->category_id = $request->category_id;
+        $product->color = $request->color;
 
-        // Redirect back to the product details page with a success message
-        return redirect()->back()->with('success', 'Product updated successfully.');
+        // Save the product
+        $product->save();
+
+        // Handle the product images
+        if($request->hasfile('image'))
+        {
+            foreach($request->file('image') as $image)
+            {
+                $name = time().'_'.$image->getClientOriginalName();
+                $image->move(public_path().'/images/products/', $name);
+                $imagePath = 'images/products/' . $name;
+
+                $productImage = new ProductImage();
+                $productImage->product_id = $product->id;
+                $productImage->image_path = $imagePath;
+                $productImage->save();
+            }
+        }
+
+        return redirect()->route('admin')->with('success', 'Product created successfully.');
     }
 }

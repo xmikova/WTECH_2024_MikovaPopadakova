@@ -7,6 +7,7 @@ use App\Models\Delivery;
 use App\Models\Order;
 use App\Models\Payment;
 use App\Models\CartItem;
+use App\Models\Product;
 use App\Models\ShoppingCart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,9 +20,10 @@ class CartPaymentController extends Controller
     {
         // Fetch payment methods from the database
         $payments = Payment::all();
+        $totalPrice = $this->calculatePrice();
 
         // Pass the payment methods to the view
-        return view('cart.payment', compact('payments'));
+        return view('cart.payment', compact('payments', 'totalPrice'));
     }
 
     public function order(Request $request)
@@ -47,7 +49,6 @@ class CartPaymentController extends Controller
 
         $delivery = Delivery::where('type', $deliveryType)->firstOrFail();
 
-
         // Find the payment method based on the selected type
         $payment = Payment::where('type', $paymentType)->firstOrFail();
 
@@ -67,8 +68,18 @@ class CartPaymentController extends Controller
         }
 
         // Calculate total price from cart items
-        $totalPrice = collect($cartItems)->sum('price');
+        $totalProductPrice = 0;
+        foreach ($cartItems as $item) {
+            // Retrieve the product price
+            $product = Product::find($item['product_id']);
+            if ($product) {
+                $totalProductPrice += $product->price * $item['amount'];
+            }
+        }
 
+        $deliveryFee = $delivery->price;
+        $paymentFee = $payment->price;
+        $totalPrice = $totalProductPrice + $deliveryFee + $paymentFee;
 
         // Create the order record
         $order = new Order([
@@ -109,5 +120,42 @@ class CartPaymentController extends Controller
         return view('thankyou', compact('order'));
     }
 
+    private function calculatePrice()
+    {
+        // Retrieve data from the session
+        $deliveryType = Session::get('shippingType');
+        $cartItems = Session::get('cart', []);
 
+        $totalProductPrice = 0;
+        $deliveryFee = 0;
+        $paymentFee = 0;
+
+        // Calculate total product price
+        foreach ($cartItems as $item) {
+            // Retrieve the product price
+            $product = Product::find($item['product_id']);
+            if ($product) {
+                $totalProductPrice += $product->price * $item['amount'];
+            }
+        }
+
+        // Calculate delivery fee
+        $delivery = Delivery::where('type', $deliveryType)->first();
+        if ($delivery) {
+            $deliveryFee = $delivery->price;
+        }
+
+        // Calculate payment fee (assuming you have a fixed payment fee)
+        $payment = Payment::where('type', 'payment_type')->first();
+        if ($payment) {
+            $paymentFee = $payment->price;
+        }
+
+        // Calculate total price
+        $totalPrice = $totalProductPrice + $deliveryFee + $paymentFee;
+
+        // Return prices as an associative array
+        return $totalPrice;
+
+    }
 }

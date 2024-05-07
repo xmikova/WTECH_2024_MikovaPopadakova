@@ -4,7 +4,6 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartDeliveryController;
 use App\Http\Controllers\CartPaymentController;
 use App\Http\Controllers\FooterController;
-use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LandingController;
@@ -25,7 +24,7 @@ Route::get('/category/{category}', [CategoryController::class, 'showByCategory']
 Route::get('/products/{productId}', [ProductController::class, 'show'])->name('products.show');
 
 Route::get('/products', [ProductsController::class, 'searchProducts'])->name('products.search');
-
+Route::get('/images/products/{filename}', [App\Http\Controllers\ProductController::class, 'serveImage']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -36,7 +35,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::put('/products/{product}', [ProductController::class, 'update'])->name('product.update');
-
+    Route::delete('/product/{productId}/image/{imageId}', [ProductController::class, 'deleteImage'])->name('product.image.delete');
+    Route::post('/product/{productId}/image/upload', [ProductController::class, 'uploadImage'])->name('product.image.upload');
+    Route::delete('/product/{product}', [App\Http\Controllers\ProductController::class, 'delete'])->name('product.delete');
+    Route::post('/product', [App\Http\Controllers\AdminController::class, 'store'])->name('product.store');
 });
 
 Route::get('/admin', [AdminController::class, 'index'])->name('admin');

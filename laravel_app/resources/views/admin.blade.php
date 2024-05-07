@@ -42,7 +42,7 @@
                     @foreach($products as $product)
                         <div class="col">
                             <a href="{{ route('products.show', ['productId' => $product->id]) }}" class="card text-decoration-none">
-                                <img src="{{ asset($product->image) }}" class="card-img" alt="{{ $product->name }}">
+                                <img src="{{ asset($product->images->first()->image_path) }}" class="card-img" alt="{{ $product->name }}">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ $product->name }}</h5>
                                     <p class="card-text bi bi-pencil" style="font-size: larger;"> EDIT</p>
@@ -62,34 +62,65 @@
         <h4 class="text-center mb-4">
             Zadajte detaily produktu:
         </h4>
-        <section class="add-product-container mb-5 col-md-6 mx-auto text-center">
+        <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data" class="add-product-container mb-5 col-md-6 mx-auto text-center">
+            @csrf
             <div class="mt-3">
                 <div class="mt-3">
                     <div class="mb-3">
-                        <input type="title" class="add-form form-control me-3" placeholder="Názov produktu">
+                        <input type="text" name="name" class="add-form form-control me-3" placeholder="Názov produktu">
                     </div>
                     <div class="mb-3">
-                        <input type="type" class="add-form form-control me-3" placeholder="Typ produktu">
+                        <input type="text" name="device_type" class="add-form form-control me-3" placeholder="Typ produktu">
                     </div>
                     <div class="mb-3">
-                        <input type="about" class="add-form form-control me-3" placeholder="Popis">
+                        <textarea name="description" class="add-form form-control me-3" placeholder="Popis"></textarea>
                     </div>
                     <div class="mb-3">
-                        <input type="brand" class="add-form form-control me-3" placeholder="Značka">
+                        <input type="text" name="brand" class="add-form form-control me-3" placeholder="Značka">
                     </div>
                     <div class="mb-3">
-                        <input type="price" class="add-form form-control me-3" placeholder="Cena">
+                        <input type="number" step="0.01" name="price" class="add-form form-control me-3" placeholder="Cena">
+                    </div>
+                    <div class="mb-3">
+                        <p>Je to hit týždňa?</p>
+                        <input type="radio" id="yes" name="weekly_hit" value="1">
+                        <label for="yes">Ano</label><br>
+                        <input type="radio" id="no" name="weekly_hit" value="0">
+                        <label for="no">Nie</label><br>
+                    </div>
+                    <div class="mb-3">
+                        <p>Kategória:</p>
+                        <select name="category_id">
+                            <option value="1">Obaly na telefón</option>
+                            <option value="2">Obaly na slúchadlá</option>
+                            <option value="3">Ochranné fólie a sklá</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <p>Farba:</p>
+                        <select name="color">
+                            <option value="červená">Červená</option>
+                            <option value="modrá">Modrá</option>
+                            <option value="zelená">Zelená</option>
+                            <option value="žltá">Žltá</option>
+                            <option value="oranžová">Oranžová</option>
+                            <option value="fialová">Fialová</option>
+                            <option value="ružová">Ružová</option>
+                            <option value="hnedá">Hnedá</option>
+                            <option value="čierna">Čierna</option>
+                            <option value="béžová">Béžová</option>
+                        </select>
                     </div>
                     <div class="mb-3 input-group-append">
                         <p>Nahrať fotografie:</p>
-                        <input type="file" class="add-form form-control" id="inputGroupFile01" multiple>
+                        <input type="file" name="image[]" class="add-form form-control" id="inputGroupFile01" multiple>
                     </div>
                 </div>
                 <div class="buyNow">
-                    <button class="btn btn-outline-dark text-center px-lg-5">Pridať</button>
+                    <button type="submit" class="btn btn-outline-dark text-center px-lg-5">Pridať</button>
                 </div>
             </div>
-        </section>
+        </form>
     </div>
 @endsection
 
