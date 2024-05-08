@@ -7,6 +7,7 @@ use App\Models\Delivery;
 use App\Models\Order;
 use App\Models\Payment;
 use App\Models\CartItem;
+use App\Models\Product;
 use App\Models\ShoppingCart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,47 +18,36 @@ class CartPaymentController extends Controller
 {
     public function index()
     {
-        // Fetch payment methods from the database
         $payments = Payment::all();
+        $totalPrice = $this->calculatePrice();
 
-        // Pass the payment methods to the view
-        return view('cart.payment', compact('payments'));
+        return view('cart.payment', compact('payments', 'totalPrice'));
     }
 
     public function order(Request $request)
     {
-        // Retrieve data from the session
         $deliveryInfo = Session::get('delivery_info');
         $cartItems = Session::get('cart', []);
         $paymentType = $request->input('paymentType');
         $deliveryType = Session::get('shippingType');
         $selectedStore = Session::get('pickup_place');
 
-        // Create or retrieve customer info
         if (Auth::check()) {
-            $customerId = Auth::id(); // Get the ID of the authenticated user
+            $customerId = Auth::id();
             $customerInfo = new CustomerInfo($deliveryInfo);
-            $customerInfo->user_id = $customerId; // Set the user_id attribute
+            $customerInfo->user_id = $customerId;
             $customerInfo->save();
         } else {
-            // If user is not logged in, create a new customer info record
             $customerInfo = new CustomerInfo($deliveryInfo);
             $customerInfo->save();
         }
 
         $delivery = Delivery::where('type', $deliveryType)->firstOrFail();
-
-
-        // Find the payment method based on the selected type
         $payment = Payment::where('type', $paymentType)->firstOrFail();
 
-        // Create shopping cart and associate cart items
-        // Create a new shopping cart instance
         $cart = new ShoppingCart();
-        $cart->save(); // Save the shopping cart to generate an ID
+        $cart->save();
 
-        // Associate the shopping cart with the cart items
-        // Create cart items and associate them with the shopping cart
         foreach ($cartItems as $item) {
             $cartItem = new CartItem([
                 'product_id' => $item['product_id'],
@@ -66,11 +56,8 @@ class CartPaymentController extends Controller
             $cart->items()->save($cartItem);
         }
 
-        // Calculate total price from cart items
-        $totalPrice = collect($cartItems)->sum('price');
+        $totalPrice = $this->calculatePrice();
 
-
-        // Create the order record
         $order = new Order([
             'totalPrice' => $totalPrice,
             'createdAt' => now(),
@@ -87,7 +74,6 @@ class CartPaymentController extends Controller
         $order->payment()->associate($payment);
         $order->save();
 
-        // Clear the session data
         Session::forget('delivery_info');
         Session::put('cart', []);
 
@@ -102,27 +88,65 @@ class CartPaymentController extends Controller
 
     public function thankYou($orderId)
     {
-        // Retrieve the order from the database
         $order = Order::findOrFail($orderId);
 
-        // Pass the order data to the thank you view
         return view('thankyou', compact('order'));
     }
 
     public function showOrders()
     {
-        // Retrieve the authenticated user
         $user = Auth::user();
 
-        // Retrieve orders associated with the authenticated user
         $orders = Order::whereHas('customerInfo', function ($query) use ($user) {
             $query->where('user_id', $user->id);
         })->get();
 
-        //dd($orders);
 
-        // Pass the orders to the view
         return view('profile.edit', ['orders' => $orders]);
+    }
+
+    private function calculatePrice()
+    {
+        $deliveryType = Session::get('shippingType');
+        $cartItems = [];
+
+        if (Auth::check()) {
+            $user = Auth::user();
+
+            $cartItems = $user->shoppingCart->items->map(function ($item) {
+                return [
+                    'product_id' => $item->product_id,
+                    'amount' => $item->amount,
+                ];
+            })->toArray();
+        } else {
+            $cartItems = Session::get('cart', []);
+        }
+
+        $totalProductPrice = 0;
+        $deliveryFee = 0;
+        $paymentFee = 0;
+
+        foreach ($cartItems as $item) {
+            $product = Product::find($item['product_id']);
+            if ($product) {
+                $totalProductPrice += $product->price * $item['amount'];
+            }
+        }
+
+        $delivery = Delivery::where('type', $deliveryType)->first();
+        if ($delivery) {
+            $deliveryFee = $delivery->price;
+        }
+
+        $payment = Payment::where('type', 'payment_type')->first();
+        if ($payment) {
+            $paymentFee = $payment->price;
+        }
+
+        $totalPrice = $totalProductPrice + $deliveryFee + $paymentFee;
+
+        return $totalPrice;
     }
 
 }
