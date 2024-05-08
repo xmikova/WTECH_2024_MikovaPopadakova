@@ -17,10 +17,10 @@
 
     <section class="basket-container mt-5 mt-xl-5 me-xl-5 ms-xl-5">
         <div class="container">
-            @if(empty($cartItems))
+            @if(count($cartItems) === 0)
                 <div class="row mb-3 justify-content-center">
                     <div class="col text-center">
-                        <p>The basket is empty.</p>
+                        <p>Košík je prázdny.</p>
                     </div>
                 </div>
             @else
@@ -51,15 +51,15 @@
                         </div>
                     </div>
                 @endforeach
-                <div class="row mb-3 justify-content-center">
-                    <div class="buyNow ms-lg-3 text-center">
-                        <h5>Celková cena: {{ $totalPrice }}€</h5>
-                        <form action="{{ route('delivery.index') }}" method="GET">
-                            @csrf
-                            <button type="submit" id="delivery-button" class="btn btn-outline-dark p-3" >Pokračovať k doprave</button>
-                        </form>
+                    <div class="row mb-3 justify-content-center">
+                        <div class="buyNow ms-lg-3 text-center">
+                            <h5>Celková cena: {{ $totalPrice }}€</h5>
+                            <form action="{{ route('delivery.index') }}" method="GET">
+                                @csrf
+                                <button type="submit" id="delivery-button" class="btn btn-outline-dark p-3" >Pokračovať k doprave</button>
+                            </form>
+                        </div>
                     </div>
-                </div>
             @endif
         </div>
     </section>

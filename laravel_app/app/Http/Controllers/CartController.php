@@ -139,7 +139,8 @@ class CartController extends Controller
                 }
             }
 
-            return redirect()->back();        } else {
+            return redirect()->back();
+        } else {
             // If the user is not logged in, use session to store the cart item
             $cartItems = Session::get('cart', []);
 

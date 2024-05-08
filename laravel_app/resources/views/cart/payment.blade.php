@@ -22,7 +22,6 @@
                 <div class="row mb-5">
                     <div class="col-md-6 mx-auto">
                         <h3>Druh platby</h3>
-                        <!-- Loop through payment methods retrieved from the database -->
                         @foreach($payments as $payment)
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="paymentType" id="{{ $payment->type }}" value="{{ $payment->type }}">
@@ -42,13 +41,17 @@
                     <div class="col-md-6 mx-auto">
                         <div class="mt-3">
                             <h3>Zvolili ste:</h3>
-                            <p id="selectedPayment">(zvolený druh platby)</p>
-                            <p>info</p>
-                            <p class="text-break">______________________________________________</p>
-                            <p class="text-break">______________________________________________</p>
-                            <p class="text-break">______________________________________________</p>
+                            <p id="selectedPayment">(tu sa zobrazí zvolený druh platby a informácie)</p>
+                            <p id="info_osobne" class="payment-info text-break" style="display: none;">Vybrali ste si platbu osobne pri prevzatí zásielky na predajni.
+                                Zásielku je možné uhradiť v hotovosti alebo kartou. Doručenie na predajňu vám
+                                bude oznámené SMS správou a emailom.</p>
+                            <p id="info_kartou" class="payment-info text-break" style="display: none;">Vybrali ste si platbu kartou online. Po kliknutí tlačidla budete
+                                presmerovaný do platobnej brány kde zadaním svojich bankových údajov môžete zaplatiť
+                                objednávku. Potvrdenie o prijatí platby vám bude zaslané mailom.</p>
+                            <p id="info_dobierka" class="payment-info text-break" style="display: none;">Vybrali ste si platbu na dobierku. Zásielku vám doručí kuriér,
+                                ktorý vám ju vydá po zaplatení hotovosťou. Pri dobierke nie je možné platiť kartou.</p>
                             <div class="buyNow ms-lg-3 text-center mt-5">
-                                <p>Celková suma: €</p>
+                                <h5>Celková suma: {{ $totalPrice }}€</h5>
                                 <button type="submit" id="order-button" class="btn btn-outline-dark p-3">Objednať s povinnosťou platby</button>
                             </div>
                         </div>
@@ -66,7 +69,16 @@
         document.querySelectorAll('input[name="paymentType"]').forEach(function(radioButton) {
             radioButton.addEventListener('change', function() {
                 // Update the selected payment display with the selected value
-                document.getElementById('selectedPayment').innerText = this.value;
+                document.getElementById('selectedPayment').innerText = " ";
+
+                // Hide all payment information paragraphs
+                document.querySelectorAll('.payment-info').forEach(function(info) {
+                    info.style.display = 'none';
+                });
+
+                // Show the payment information paragraph that corresponds to the selected payment type
+                document.getElementById('info_' + this.value).style.display = 'block';
             });
         });
-    </script>@endsection
+    </script>
+@endsection

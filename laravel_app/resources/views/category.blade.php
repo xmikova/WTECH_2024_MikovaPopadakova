@@ -81,7 +81,7 @@
             @foreach($products as $product)
                 <div class="col">
                     <a href="{{ route('products.show', ['productId' => $product->id]) }}" class="card text-decoration-none">
-                        <img src="{{ asset($product->image) }}" class="card-img" alt="{{ $product->name }}">
+                        <img src="{{ asset($product->images->first()->image_path) }}" class="card-img" alt="{{ $product->name }}">
                         <div class="card-body">
                             <h5 class="card-title">{{ $product->name }}</h5>
                             <p class="card-text">{{ $product->price }} €</p>

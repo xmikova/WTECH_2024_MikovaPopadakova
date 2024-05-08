@@ -20,7 +20,6 @@ class CreateProductsTable extends Migration
             $table->string('device_type', 50);
             $table->string('color', 50);
             $table->float('price');
-            $table->float('discount_price')->nullable();
             $table->boolean('weekly_hit')->default(false);
             $table->unsignedInteger('category_id');
             $table->timestamps();

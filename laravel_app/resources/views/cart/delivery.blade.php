@@ -100,6 +100,7 @@
                             </label>
                         </div>
                     </div>
+                    <input type="hidden" name="selectedStore" id="selectedStore">
                     <div class="col-md-6" id="storeSelection" style="display: none;">
                         <h3>Výber predajne</h3>
                         <div class="dropdown">
@@ -107,11 +108,11 @@
                                 Vyber predajňu
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="storeDropdown">
-                                <li><span class="dropdown-item clickable" data-value="Bratislava">Bratislava</span></li>
-                                <li><span class="dropdown-item clickable" data-value="Košice">Košice</span></li>
-                                <li><span class="dropdown-item clickable" data-value="Žilina">Žilina</span></li>
-                                <li><span class="dropdown-item clickable" data-value="Nitra">Nitra</span></li>
-                                <li><span class="dropdown-item clickable" data-value="Trnava">Trnava</span></li>
+                                <li><span class="dropdown-item clickable" data-value="Bratislava" onclick="updateSelectedStore('Bratislava')">Bratislava</span></li>
+                                <li><span class="dropdown-item clickable" data-value="Košice" onclick="updateSelectedStore('Košice')">Košice</span></li>
+                                <li><span class="dropdown-item clickable" data-value="Žilina" onclick="updateSelectedStore('Žilina')">Žilina</span></li>
+                                <li><span class="dropdown-item clickable" data-value="Nitra" onclick="updateSelectedStore('Nitra')">Nitra</span></li>
+                                <li><span class="dropdown-item clickable" data-value="Trnava" onclick="updateSelectedStore('Trnava')">Trnava</span></li>
                             </ul>
                         </div>
                     </div>
@@ -179,6 +180,10 @@
                 document.getElementById('billing_city').value = '';
             }
         });
+
+        function updateSelectedStore(store) {
+            document.getElementById('selectedStore').value = store;
+        }
     </script>
 @endsection
 
