@@ -61,6 +61,7 @@
                                         </div>
                                     </div>
                                 @endforeach
+{{--                                @dd($order->cart)--}}
 {{--                                @dd($order->cart->items)--}}
                             </div>
                         </div>
