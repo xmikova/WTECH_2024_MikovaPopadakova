@@ -78,9 +78,6 @@ class ProfileController extends Controller
             $itemsByCartId[$cartId] = $items;
         }
 
-
-
-
         // Attach the items to the corresponding order
         foreach ($orders as $order) {
             $order->items = $itemsByCartId[$order->cart_id] ?? collect();

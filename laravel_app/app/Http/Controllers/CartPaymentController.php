@@ -37,15 +37,17 @@ class CartPaymentController extends Controller
             $customerInfo = new CustomerInfo($deliveryInfo);
             $customerInfo->user_id = $customerId;
             $customerInfo->save();
+            $cart = Auth::user()->shoppingCart;
+
         } else {
             $customerInfo = new CustomerInfo($deliveryInfo);
             $customerInfo->save();
+            $cart = new ShoppingCart();
+            $cart->save();
         }
 
         $delivery = Delivery::where('type', $deliveryType)->firstOrFail();
         $payment = Payment::where('type', $paymentType)->firstOrFail();
-
-        $cart = Auth::user()->shoppingCart;
 
         foreach ($cartItems as $item) {
             $cartItem = new CartItem([
