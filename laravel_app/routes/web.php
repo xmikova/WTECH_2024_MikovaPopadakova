@@ -31,7 +31,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [CartPaymentController::class, 'showOrders'])->name('edit.showOrders');
+    Route::get('/profile', [ProfileController::class, 'showOrders'])->name('edit.showOrders');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::put('/products/{product}', [ProductController::class, 'update'])->name('product.update');
@@ -54,7 +54,6 @@ Route::post('/delivery/store', [CartDeliveryController::class, 'store'])->name('
 
 Route::get('/payment', [CartPaymentController::class, 'index'])->name('payment.index');
 Route::post('/order', [CartPaymentController::class, 'order'])->name('payment.order');
-
 Route::get('/thankyou/{order_id}', [CartPaymentController::class, 'thankYou'])->name('payment.thankyou');
 
 require __DIR__.'/auth.php';

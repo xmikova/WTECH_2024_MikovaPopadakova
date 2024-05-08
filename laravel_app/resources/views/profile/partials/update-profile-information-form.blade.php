@@ -1,3 +1,4 @@
+@php use Illuminate\Contracts\Auth\MustVerifyEmail; @endphp
 @section('customCss')
     <link href="{{ asset('css/login.css') }}" rel="stylesheet" type="text/css">
 @endsection
@@ -22,31 +23,15 @@
         @method('patch')
 
         <div class="mb-3">
-            <x-text-input class="form-control me-3" id="name" name="name" type="text" :value="old('name', $user->name)" required autofocus autocomplete="name" />
-            <x-input-error class="mt-2" :messages="$errors->get('name')" />
+            <x-text-input class="form-control me-3" id="name" name="name" type="text"
+                          :value="old('name', Auth::user()->name)" required autofocus autocomplete="name"/>
+            <x-input-error class="mt-2" :messages="$errors->get('name')"/>
         </div>
 
         <div class="mb-3">
-            <x-text-input class="form-control me-3" id="email" name="email" type="email" :value="old('email', $user->email)" required autocomplete="username" />
-            <x-input-error class="mt-2" :messages="$errors->get('email')" />
-
-            @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
-                <div>
-                    <p class="text-sm mt-2 text-gray-800">
-                        {{ __('Vaša emailová adresa nie je overená.') }}
-
-                        <button form="send-verification" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            {{ __('Kliknite sem pre opätovné zaslanie verifikačného emailu.') }}
-                        </button>
-                    </p>
-
-                    @if (session('status') === 'verification-link-sent')
-                        <p class="mt-2 font-medium text-sm text-green-600">
-                            {{ __('A new verification link has been sent to your email address.') }}
-                        </p>
-                    @endif
-                </div>
-            @endif
+            <x-text-input class="form-control me-3" id="email" name="email" type="email"
+                          :value="old('email', Auth::user()->email)" required autocomplete="username"/>
+            <x-input-error class="mt-2" :messages="$errors->get('email')"/>
         </div>
 
         <div class="flex items-center gap-4">

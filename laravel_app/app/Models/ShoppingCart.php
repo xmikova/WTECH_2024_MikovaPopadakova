@@ -13,9 +13,8 @@ class ShoppingCart extends Model
 
     public function items()
     {
-        return $this->belongsToMany(CartItem::class);
+        return $this->belongsToMany(CartItem::class, 'cart_item_shopping_cart', 'shopping_cart_id', 'cart_item_id');
     }
-
 }
 
 

@@ -45,8 +45,7 @@ class CartPaymentController extends Controller
         $delivery = Delivery::where('type', $deliveryType)->firstOrFail();
         $payment = Payment::where('type', $paymentType)->firstOrFail();
 
-        $cart = new ShoppingCart();
-        $cart->save();
+        $cart = Auth::user()->shoppingCart;
 
         foreach ($cartItems as $item) {
             $cartItem = new CartItem([
@@ -91,18 +90,6 @@ class CartPaymentController extends Controller
         $order = Order::findOrFail($orderId);
 
         return view('thankyou', compact('order'));
-    }
-
-    public function showOrders()
-    {
-        $user = Auth::user();
-
-        $orders = Order::whereHas('customerInfo', function ($query) use ($user) {
-            $query->where('user_id', $user->id);
-        })->get();
-
-
-        return view('profile.edit', ['orders' => $orders]);
     }
 
     private function calculatePrice()

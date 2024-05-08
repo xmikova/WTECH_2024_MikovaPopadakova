@@ -13,18 +13,29 @@
 .product-card {
     width: 200px;
     display: inline-block;
-    margin-right: 10px;
+    margin-right: 25px;
 }
+
 .product-info {
     text-align: center;
+
 }
+
+.product-info p {
+    margin-bottom: 0;
+}
+
 .scrollable-container {
     overflow-x: hidden;
     white-space: nowrap;
+    display: flex;
+    flex-direction: row;
 }
+
 .navigation-arrows {
     text-align: center;
 }
+
 .prev-btn,
 .next-btn {
     background: none;

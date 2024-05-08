@@ -35,50 +35,72 @@
         </div>
     </div>
 
-    <section class="user-items mt-xl-5 me-xl-5 ms-xl-5 mb-xl-5">
-        @if($orders->isNotEmpty())
+    <section id="myOrders">
+        @if(count($orders) !== 0)
             @foreach ($orders as $order)
-                <div id="myOrders" class="container mt-4 mb-lg-5">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-6 text-start">
-                                <p class="order-info">Objednávka č.{{ $order->id }}</p>
+                @if($order->items->isNotEmpty())
+                    <section class="user-items mt-xl-5 me-xl-5 ms-xl-5 mb-xl-5">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-6 text-start">
+                                    <h6 class="order-info">Objednávka č.{{ $order->id }}</h6>
+                                </div>
+                                <div class="col-6 text-end">
+                                    <p class="order-status"><b>Stav:</b> {{ $order->state }}</p>
+                                </div>
                             </div>
-                            <div class="col-6 text-end">
-                                <p class="order-status">Stav: {{ $order->state }}</p>
+                            <div class="scrollable-container">
+                                <div class="scrollable-content">
+                                    @if ($order->items)
+                                        @foreach ($order->items as $item)
+                                            <div class="product-card">
+                                                <div class="product-image">
+                                                    <img src="{{ $item->image }}" class="card-img-top" alt="{{ $item->name }}">
+                                                </div>
+                                                <div class="product-info">
+                                                    <h6 class="card-title">{{ $item->name }}</h6>
+                                                    <p class="card-text">Cena: {{ $item->price }} €</p>
+                                                    <p class="card-text">Počet kusov: {{ $item->quantity }}</p>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="navigation-arrows">
+                                <button class="prev-btn">&lt;</button>
+                                <button class="next-btn">&gt;</button>
                             </div>
                         </div>
-                        <div class="scrollable-container">
-                            <div class="scrollable-content d-flex">
-                                @foreach ($order->cart->items as $cartItem)
-                                    <div class="card">
-                                        <img src="{{ $cartItem->product->image_url }}" class="card-img-top" alt="{{ $cartItem->product->name }}">
-                                        <div class="card-body">
-                                            <h5 class="card-title">{{ $cartItem->product->name }}</h5>
-                                            <p class="card-text">{{ $cartItem->product->description }}</p>
-                                            <p class="card-text">Quantity: {{ $cartItem->amount }}</p>
-                                            <p class="card-text">Price: ${{ $cartItem->product->price }}</p>
-                                        </div>
-                                    </div>
-                                @endforeach
-{{--                                @dd($order->cart)--}}
-{{--                                @dd($order->cart->items)--}}
-                            </div>
-                        </div>
-                        <div class="navigation-arrows">
-                            <button class="prev-btn">&lt;</button>
-                            <button class="next-btn">&gt;</button>
-                        </div>
-                    </div>
-                </div>
+                    </section>
+                @endif
             @endforeach
-        @else
-            <div id="myOrders" class="container mt-4 mb-lg-5">
+        @endif
+
+        @if(count($orders) === 0)
+            <div class="container mt-4 mb-lg-5">
                 <div class="container">
                     <p> Zatiaľ nemáte žiadnu objednávku.</p>
                 </div>
             </div>
         @endif
+    </section>
+
+    <section id="myData"  class="user-items mt-xl-5 me-xl-5 ms-xl-5 mb-xl-5" style="display: none;">
+        <div class="container mt-4 mb-lg-5">
+            <section class="add-data-container mb-5 col-md-6 mx-auto text-center">
+                <div class="mt-3 mb-5">
+                    <div class="col text-center">
+                        @include('profile.partials.update-profile-information-form')
+                    </div>
+                </div>
+                <div class="mt-5">
+                    <div class="col text-center">
+                        @include('profile.partials.update-password-form')
+                    </div>
+                </div>
+            </section>
+        </div>
     </section>
 @endsection
 
@@ -115,5 +137,3 @@
         });
     </script>
 @endsection
-
-
