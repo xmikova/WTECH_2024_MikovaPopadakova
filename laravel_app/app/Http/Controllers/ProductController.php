@@ -50,15 +50,12 @@ class ProductController extends Controller
         $product = Product::findOrFail($productId);
         $image = ProductImage::findOrFail($imageId);
 
-        // Check if the image belongs to the product
         if ($image->product_id !== $product->id) {
             abort(403, 'Unauthorized action.');
         }
 
-        // Delete image file from storage
         Storage::delete($image->image_path);
 
-        // Delete image record from database
         $image->delete();
 
         return redirect()->back()->with('success', 'Image deleted successfully.');
@@ -70,7 +67,7 @@ class ProductController extends Controller
     public function uploadImage(Request $request, $productId)
     {
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust validation rules as needed
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         if (!$request->hasFile('image')) {
@@ -85,15 +82,12 @@ class ProductController extends Controller
 
         $product = Product::findOrFail($productId);
 
-        // Check if the product already has 4 images
         if ($product->images()->count() >= 4) {
             throw ValidationException::withMessages(['image' => 'Produkt nesmie presiahnuť maximum povolených obrázkov - 4.']);
         }
 
-        // Generate a unique file name
         $fileName = md5($file->getClientOriginalName()) . date('Y_m_d_H_i_s') . '.' . $file->getClientOriginalExtension();
 
-        // Move the file to the public/images directory
         $file->move(public_path('images/products/'), $fileName);
 
         $imagePath = 'images/products/' . $fileName;
@@ -109,18 +103,13 @@ class ProductController extends Controller
     public function delete(Product $product)
     {
 
-        // Delete each associated image file
         foreach ($product->images as $image) {
-            // Construct the full path to the image file
             $imagePath = public_path($image->image_path);
 
-            // Check if the image file exists
             if (file_exists($imagePath)) {
-                // Delete the image file
                 unlink($imagePath);
             }
 
-            // Delete the image record from the database
             $image->delete();
         }
 

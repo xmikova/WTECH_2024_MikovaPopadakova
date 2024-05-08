@@ -52,7 +52,14 @@
     }
 
     .filter-part {
-        margin-bottom: 20px;
+        width: 160px;
+        padding-right: 1px;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    .button-part {
+        width: 150px;
+        text-align: center;
     }
 }
 
@@ -63,5 +70,15 @@
 
     .button-part {
         text-align: center;
+    }
+}
+@media (max-width: 470px) {
+    .button-part {
+        width: 150px;
+    }
+}
+@media (max-width: 370px) {
+    .button-part {
+        padding: 10px;
     }
 }

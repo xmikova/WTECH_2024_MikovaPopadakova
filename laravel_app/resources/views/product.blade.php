@@ -24,7 +24,6 @@
                         <p class="mb-3">{{ $product->description }}</p>
                         <h4 class="mb-3">Cena: {{ $product->price }}€</h4>
 
-                        <!-- Check if the user is an admin -->
                         @auth
                             @if(Auth::user()->role === 'admin')
                                 <form action="{{ route('product.update', ['product' => $product->id]) }}" method="POST">
@@ -38,18 +37,21 @@
                                         <label for="description" class="form-label">Description:</label>
                                         <textarea class="form-control" id="description" name="description">{{ $product->description }}</textarea>
                                     </div>
-                                    <!-- Add more fields as needed -->
-
                                     <button type="submit" class="btn btn-outline-dark">Save</button>
                                 </form>
                             @else
-
+                                <form action="{{ route('cart.add', ['productId' => $product->id]) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" id="add-to-cart" class="btn btn-outline-dark p-3">Pridať do košíka</button>
+                                </form>
                             @endif
                         @endauth
-                        <form action="{{ route('cart.add', ['productId' => $product->id]) }}" method="POST">
-                            @csrf
-                            <button type="submit" id="add-to-cart" class="btn btn-outline-dark p-3">Pridať do košíka</button>
-                        </form>
+                        @guest
+                            <form action="{{ route('cart.add', ['productId' => $product->id]) }}" method="POST">
+                                @csrf
+                                <button type="submit" id="add-to-cart" class="btn btn-outline-dark p-3">Pridať do košíka</button>
+                            </form>
+                        @endguest
                     </div>
                 </div>
             </div>

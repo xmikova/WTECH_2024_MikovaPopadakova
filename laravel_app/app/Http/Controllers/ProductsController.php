@@ -17,16 +17,13 @@ class ProductsController extends Controller
             $productsQuery->whereRaw("to_tsvector('english', name || ' ' || description || ' ' || device_type || ' ' || brand) @@ plainto_tsquery('english', ?) OR name ILIKE ?", [$query, '%' . $query . '%']);
         }
 
-
         $deviceTypes = Product::distinct()->pluck('device_type');
 
-        // Retrieve unique colors from products
         $colors = Product::distinct()->pluck('color');
 
         $minPrice = $productsQuery->min('price');
         $maxPrice = $productsQuery->max('price');
 
-        // Apply filters if provided in the request
         if ($request->has('device_type')) {
             $productsQuery->where('device_type', $request->input('device_type'));
         }
@@ -36,7 +33,6 @@ class ProductsController extends Controller
         }
 
         if ($request->has('min_price')){
-            // Apply the filter only if min_price is not empty
             $productsQuery->whereRaw('CAST(price AS INTEGER) >= ?', [$request->input('min_price')]);
         }
 

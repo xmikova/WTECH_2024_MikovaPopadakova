@@ -44,10 +44,8 @@ class AdminController extends Controller
         $product->category_id = $request->category_id;
         $product->color = $request->color;
 
-        // Save the product
         $product->save();
 
-        // Handle the product images
         if($request->hasfile('image'))
         {
             foreach($request->file('image') as $image)

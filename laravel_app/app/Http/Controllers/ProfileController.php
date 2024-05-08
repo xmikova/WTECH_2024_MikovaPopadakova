@@ -55,17 +55,14 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
 
-        // Retrieve the orders of the authenticated user
         $orders = Order::whereHas('customerInfo', function ($query) use ($user) {
             $query->where('user_id', $user->id);
         })->get();
 
-        // Retrieve the cart_ids from the orders
         $cartIds = $orders->pluck('cart_id');
 
         $itemsByCartId = [];
 
-        // Loop over each cart_id and execute the query
         foreach ($cartIds as $cartId) {
             $items = DB::table('cart_item_shopping_cart')
                 ->where('shopping_cart_id', '=', $cartId)
@@ -74,11 +71,9 @@ class ProfileController extends Controller
                 ->select('products.*', 'cart_items.amount as quantity')
                 ->get();
 
-            // Group the items by cart_id
             $itemsByCartId[$cartId] = $items;
         }
 
-        // Attach the items to the corresponding order
         foreach ($orders as $order) {
             $order->items = $itemsByCartId[$order->cart_id] ?? collect();
         }

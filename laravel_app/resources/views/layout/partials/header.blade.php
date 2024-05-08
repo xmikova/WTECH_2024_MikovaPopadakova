@@ -35,7 +35,7 @@
                                 </a>
                             @endauth
                         </li>
-                        @guest <!-- Only show the registration link if the user is a guest (not logged in) -->
+                        @guest
                         <li class="nav-item me-5">
                             @if (Route::has('register'))
                                 <a class="nav-link" href="{{ route('register') }}">
@@ -55,7 +55,6 @@
                     <input class="form-control me-3" type="search" placeholder="Zadajte hľadaný text" aria-label="Search" name="query">
                     <button class="btn btn-outline-dark" type="submit">Hľadať</button>
                 </form>
-
             </div>
         </div>
     </nav>

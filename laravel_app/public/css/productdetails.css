@@ -28,6 +28,13 @@
     flex: 1;
     margin-left: 20px;
 }
+.main-container form input[name="name"],
+.main-container form textarea[name="description"] {
+    width: calc(100% - 50px);
+    padding: 10px;
+    display: block;
+    margin: 0 auto;
+}
 
 @media (max-width: 991px){
     .img-fluid {

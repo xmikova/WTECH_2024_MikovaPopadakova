@@ -136,44 +136,37 @@
         document.querySelectorAll('input[name="shippingType"]').forEach(function(radioButton) {
             radioButton.addEventListener('change', function() {
                 if (this.value === 'osobnyodber' && this.checked) {
-                    document.getElementById('storeSelection').style.display = 'block'; // Show the store selection
+                    document.getElementById('storeSelection').style.display = 'block';
                 } else {
-                    document.getElementById('storeSelection').style.display = 'none'; // Hide the store selection
+                    document.getElementById('storeSelection').style.display = 'none';
                 }
             });
         });
 
         const clickableItems = document.querySelectorAll('.clickable');
 
-        // Add click event listener to each clickable item
         clickableItems.forEach(item => {
             item.addEventListener('click', function() {
-                // Get the value of the clicked item
                 const selectedValue = this.getAttribute('data-value');
 
-                // Update the button text with the selected value
                 document.getElementById('storeDropdown').innerText = selectedValue;
 
-                // Optionally, you can store the selected value in a hidden input field if needed
                 document.getElementById('selectedStore').value = selectedValue;
             });
         });
 
-        // Add event listener to the checkbox for same address
         var sameAddressCheckbox = document.getElementById('sameAddress');
         sameAddressCheckbox.addEventListener('change', function() {
             var factualAddress = document.getElementById('factural_address').value;
             var factualPostalCode = document.getElementById('factural_postal_code').value;
             var factualCity = document.getElementById('factural_city').value;
 
-            // If checkbox is checked, fill billing address fields with factual address
             if (this.checked) {
                 document.getElementById('billing_name').value = document.getElementById('factural_name').value;
                 document.getElementById('billing_address').value = factualAddress;
                 document.getElementById('billing_postal_code').value = factualPostalCode;
                 document.getElementById('billing_city').value = factualCity;
             } else {
-                // If checkbox is unchecked, clear billing address fields
                 document.getElementById('billing_name').value = '';
                 document.getElementById('billing_address').value = '';
                 document.getElementById('billing_postal_code').value = '';
@@ -184,6 +177,31 @@
         function updateSelectedStore(store) {
             document.getElementById('selectedStore').value = store;
         }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            function allowLettersWithDiacritics(inputField) {
+                inputField.addEventListener('input', function () {
+                    this.value = this.value.replace(/[^a-zA-Z\u00C0-\u017F\s]/gu, '');
+                });
+            }
+
+            function allowOnlyNumbers(inputElement) {
+                inputElement.addEventListener('input', function () {
+                    this.value = this.value.replace(/\D/g, '');
+                });
+            }
+
+            allowLettersWithDiacritics(document.getElementById('factural_name'));
+            allowLettersWithDiacritics(document.getElementById('factural_address'));
+            allowOnlyNumbers(document.getElementById('factural_postal_code'));
+            allowLettersWithDiacritics(document.getElementById('factural_city'));
+            allowOnlyNumbers(document.getElementById('factural_phone_number'));
+
+            allowLettersWithDiacritics(document.getElementById('billing_name'));
+            allowLettersWithDiacritics(document.getElementById('billing_address'));
+            allowOnlyNumbers(document.getElementById('billing_postal_code'));
+            allowLettersWithDiacritics(document.getElementById('billing_city'));
+        });
     </script>
 @endsection
 

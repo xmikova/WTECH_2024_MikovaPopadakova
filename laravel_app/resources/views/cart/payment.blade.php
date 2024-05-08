@@ -65,18 +65,15 @@
 
 @section('customJs')
     <script>
-        // Add event listener to payment radio buttons
         document.querySelectorAll('input[name="paymentType"]').forEach(function(radioButton) {
             radioButton.addEventListener('change', function() {
-                // Update the selected payment display with the selected value
+
                 document.getElementById('selectedPayment').innerText = " ";
 
-                // Hide all payment information paragraphs
                 document.querySelectorAll('.payment-info').forEach(function(info) {
                     info.style.display = 'none';
                 });
 
-                // Show the payment information paragraph that corresponds to the selected payment type
                 document.getElementById('info_' + this.value).style.display = 'block';
             });
         });

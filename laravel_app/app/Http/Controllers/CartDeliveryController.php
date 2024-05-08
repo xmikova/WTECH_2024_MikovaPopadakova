@@ -18,7 +18,6 @@ class CartDeliveryController extends Controller
 
     public function store(Request $request)
     {
-        // Validate the incoming request data
         $validator = Validator::make($request->all(), [
             'factural_name' => 'required|string',
             'factural_address' => 'required|string',
@@ -32,12 +31,10 @@ class CartDeliveryController extends Controller
             'shippingType' => 'required|string|in:osobnyodber,zbox,kurier',
         ]);
 
-        // If validation fails, return back with errors
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        // Store the form data in session
         Session::put('delivery_info', [
             'factural_name' => $request->input('factural_name'),
             'factural_address' => $request->input('factural_address'),
@@ -52,16 +49,14 @@ class CartDeliveryController extends Controller
 
         Session::put('shippingType', $request->input('shippingType'));
 
-        // If personal pickup is chosen, store the pickup place in session
+
         if ($request->input('shippingType') === 'osobnyodber') {
             $selectedStore = $request->input('selectedStore');
             Session::put('pickup_place', $selectedStore);
         } else {
-            // If other delivery methods are chosen, remove pickup place from session
             Session::forget('pickup_place');
         }
 
-        // Redirect to the payment page
         return redirect()->route('payment.index');
     }
 }

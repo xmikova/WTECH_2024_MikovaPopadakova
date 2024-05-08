@@ -10,7 +10,6 @@ class LandingController extends Controller
 
     public function getProductOfTheWeek()
     {
-        // Retrieve the product of the week based on your criteria, such as the 'weekly_hit' attribute
         $productOfTheWeek = Product::where('weekly_hit', true)->first();
 
         return $productOfTheWeek;

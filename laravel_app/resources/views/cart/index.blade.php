@@ -26,7 +26,6 @@
             @else
                 @foreach($cartItems as $cartItem)
                     @php
-                        // Retrieve the product
                         $product = \App\Models\Product::find($cartItem['product_id']);
                     @endphp
                     <div class="product-background row mb-3 border rounded">
@@ -67,17 +66,14 @@
 
 @section('customJs')
     <script>
-        // Add event listener to all increment buttons
         document.querySelectorAll('.increment-btn').forEach(button => {
             button.addEventListener('click', function() {
-                // Get the corresponding quantity input field
+
                 const productId = this.getAttribute('data-product-id');
                 const quantityInput = document.getElementById(`quantity-${productId}`);
 
-                // Increment the quantity
                 quantityInput.value = parseInt(quantityInput.value) + 1;
 
-                // Trigger form submission
                 const form = button.closest('form');
                 form.submit();
             });
