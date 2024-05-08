@@ -43,13 +43,13 @@
                                     <button type="submit" class="btn btn-outline-dark">Save</button>
                                 </form>
                             @else
-                                <!-- Display add to cart button for non-admin users -->
-                                <form action="{{ route('cart.add', ['productId' => $product->id]) }}" method="POST">
-                                    @csrf
-                                    <button type="submit" id="add-to-cart" class="btn btn-outline-dark p-3">Pridať do košíka</button>
-                                </form>
+
                             @endif
                         @endauth
+                        <form action="{{ route('cart.add', ['productId' => $product->id]) }}" method="POST">
+                            @csrf
+                            <button type="submit" id="add-to-cart" class="btn btn-outline-dark p-3">Pridať do košíka</button>
+                        </form>
                     </div>
                 </div>
             </div>

@@ -109,5 +109,20 @@ class CartPaymentController extends Controller
         return view('thankyou', compact('order'));
     }
 
+    public function showOrders()
+    {
+        // Retrieve the authenticated user
+        $user = Auth::user();
+
+        // Retrieve orders associated with the authenticated user
+        $orders = Order::whereHas('customerInfo', function ($query) use ($user) {
+            $query->where('user_id', $user->id);
+        })->get();
+
+        //dd($orders);
+
+        // Pass the orders to the view
+        return view('profile.edit', ['orders' => $orders]);
+    }
 
 }
