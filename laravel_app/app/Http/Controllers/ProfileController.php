@@ -68,7 +68,7 @@ class ProfileController extends Controller
         // Loop over each cart_id and execute the query
         foreach ($cartIds as $cartId) {
             $items = DB::table('cart_item_shopping_cart')
-                ->where('shopping_cart_id', '=', $cartId - 1)
+                ->where('shopping_cart_id', '=', $cartId)
                 ->join('cart_items', 'cart_item_shopping_cart.cart_item_id', '=', 'cart_items.id')
                 ->join('products', 'cart_items.product_id', '=', 'products.id')
                 ->select('products.*', 'cart_items.amount as quantity')
