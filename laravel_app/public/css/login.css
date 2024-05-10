@@ -23,7 +23,6 @@
 }
 .login-container form input[type="email"],
 .login-container form input[type="password"] {
-    width: calc(100% - 0.1px);
     padding: 10px;
     display: block;
     margin: 0 auto;
@@ -31,16 +30,16 @@
 @media (max-width: 768px) {
     .login-container {
         margin: 20px auto;
-        width: 50%;
+        width: 80%;
     }
     .login-container form input[type="email"],
     .login-container form input[type="password"] {
-        width: calc(100% - 60px);
+        width: calc(100% - 20px);
     }
 }
 @media (max-width: 424px) {
     .login-container form input[type="email"],
     .login-container form input[type="password"] {
-        width: calc(100% - 40px);
+        width: calc(100% - 30px);
     }
 }

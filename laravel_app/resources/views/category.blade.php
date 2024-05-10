@@ -14,13 +14,17 @@
                             Obaly na telefón
                         @elseif($category->id === 2)
                             Obaly na slúchadlá
+                        @elseif($category->id === 3)
+                            Ochranné fólie a sklá
                         @endif
                     </h4>
                     <p>
                         @if($category->id === 1)
                             Vyberte si zo širokej škaly obalov na telefón.
-                        @else
-                            {{ ucfirst($category->name) }}
+                        @elseif($category->id === 2)
+                            Vyberte si zo širokej škaly obalov na slúchadlá.
+                        @elseif($category->id === 3)
+                            Vyberte si zo širokej škaly ochranných fólií a skiel.
                         @endif
                     </p>
                 </div>
@@ -34,7 +38,7 @@
                 <div class="row align-items-center justify-content-center mx-auto">
                     <div class="filter-part col-md-2">
                         <select class="form-select" id="phoneTypeSelect" name="device_type">
-                            <option value="" disabled selected>Typ telefónu</option>
+                            <option value="" disabled selected>Typ</option>
                             @foreach($deviceTypes as $deviceType)
                                 <option value="{{ $deviceType }}">{{ $deviceType }}</option>
                             @endforeach

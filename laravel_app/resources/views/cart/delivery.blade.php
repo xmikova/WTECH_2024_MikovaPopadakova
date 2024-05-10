@@ -181,7 +181,7 @@
         document.addEventListener('DOMContentLoaded', function () {
             function allowLettersWithDiacritics(inputField) {
                 inputField.addEventListener('input', function () {
-                    this.value = this.value.replace(/[^a-zA-Z\u00C0-\u017F\s]/gu, '');
+                    this.value = this.value.replace(/[^a-zA-Z0-9\u00C0-\u017F\s]/gu, '');
                 });
             }
 

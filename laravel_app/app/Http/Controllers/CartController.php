@@ -40,6 +40,7 @@ class CartController extends Controller
     public function add(Request $request, $productId)
     {
         $product = Product::findOrFail($productId);
+        $quantity = $request->input('quantity', 1);
 
         if (Auth::check()) {
 
@@ -49,11 +50,11 @@ class CartController extends Controller
             $existingCartItem = $shoppingCart->items()->where('product_id', $productId)->first();
 
             if ($existingCartItem) {
-                $existingCartItem->increment('amount');
+                $existingCartItem->increment('amount', $quantity);
             } else {
                 $cartItem = new CartItem([
                     'product_id' => $product->id,
-                    'amount' => 1,
+                    'amount' => $quantity,
                     'added_at' => now()->toDateTimeString(),
                 ]);
 
@@ -71,11 +72,11 @@ class CartController extends Controller
             }
 
             if ($existingCartItemKey !== null) {
-                $cartItems[$existingCartItemKey]['amount'] += 1;
+                $cartItems[$existingCartItemKey]['amount'] += $quantity;
             } else {
                 $cartItems[] = [
                     'product_id' => $productId,
-                    'amount' => 1,
+                    'amount' => $quantity,
                     'added_at' => now()->toDateTimeString(),
                 ];
             }
@@ -141,6 +142,40 @@ class CartController extends Controller
         }
 
         return redirect()->back();
+    }
+
+    public function delete(Request $request, $productId)
+    {
+        $product = Product::findOrFail($productId);
+
+        if (Auth::check()) {
+            $user = auth()->user();
+            $shoppingCart = ShoppingCart::firstOrCreate(['user_id' => $user->id]);
+
+            $existingCartItem = $shoppingCart->items()->where('product_id', $productId)->first();
+
+            if ($existingCartItem) {
+                $existingCartItem->delete();
+            }
+        } else {
+            $cartItems = Session::get('cart', []);
+
+            $existingCartItemKey = null;
+            foreach ($cartItems as $key => $cartItem) {
+                if ($cartItem['product_id'] == $productId) {
+                    $existingCartItemKey = $key;
+                    break;
+                }
+            }
+
+            if ($existingCartItemKey !== null) {
+                unset($cartItems[$existingCartItemKey]);
+            }
+
+            Session::put('cart', $cartItems);
+        }
+
+        return redirect()->back()->with('success', 'Product removed from cart successfully.');
     }
 
     private function calculateTotalPrice($cartItems)

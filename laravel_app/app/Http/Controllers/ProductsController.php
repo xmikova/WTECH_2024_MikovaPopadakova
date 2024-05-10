@@ -14,7 +14,7 @@ class ProductsController extends Controller
         $productsQuery = Product::query();
 
         if ($query) {
-            $productsQuery->whereRaw("to_tsvector('english', name || ' ' || description || ' ' || device_type || ' ' || brand) @@ plainto_tsquery('english', ?) OR name ILIKE ?", [$query, '%' . $query . '%']);
+            $productsQuery->whereRaw("to_tsvector('english', unaccent(name) || ' ' || unaccent(description) || ' ' || unaccent(device_type) || ' ' || unaccent(brand)) @@ plainto_tsquery('english', unaccent(?)) OR unaccent(name) ILIKE unaccent(?)", [$query, '%' . $query . '%']);
         }
 
         $deviceTypes = Product::distinct()->pluck('device_type');

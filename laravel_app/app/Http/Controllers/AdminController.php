@@ -23,26 +23,26 @@ class AdminController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:256',
-            'device_type' => 'required|string|max:50',
+            'device_type' => 'sometimes|string|max:50',
             'description' => 'required|string|max:1000',
-            'brand' => 'required|string|max:50',
-            'price' => 'required|numeric',
-            'weekly_hit' => 'required|boolean',
-            'category_id' => 'required|integer|exists:categories,id',
-            'color' => 'required|string|max:50',
+            'brand' => 'sometimes|string|max:50',
+            'price' => 'sometimes|numeric',
+            'weekly_hit' => 'sometimes|boolean',
+            'category_id' => 'sometimes|integer|exists:categories,id',
+            'color' => 'sometimes|string|max:50',
             'image' => 'required|array|max:4',
-            'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image.*' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $product = new Product;
         $product->name = $request->name;
-        $product->device_type = $request->device_type;
+        $product->device_type = $request->device_type ?? '-';
         $product->description = $request->description;
-        $product->brand = $request->brand;
-        $product->price = $request->price;
-        $product->weekly_hit = $request->weekly_hit;
-        $product->category_id = $request->category_id;
-        $product->color = $request->color;
+        $product->brand = $request->brand ?? '-';
+        $product->price = $request->price ?? 0;
+        $product->weekly_hit = $request->weekly_hit ?? false;
+        $product->category_id = $request->category_id ?? 1;
+        $product->color = $request->color ?? '-';
 
         $product->save();
 

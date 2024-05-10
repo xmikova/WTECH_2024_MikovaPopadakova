@@ -9,6 +9,9 @@
     justify-content: space-between;
     margin-top: 50px;
 }
+.center-content {
+    margin-right: 20px;
+}
 
 .img-fluid {
     width: 400px;
@@ -28,15 +31,8 @@
     flex: 1;
     margin-left: 20px;
 }
-.main-container form input[name="name"],
-.main-container form textarea[name="description"] {
-    width: calc(100% - 50px);
-    padding: 10px;
-    display: block;
-    margin: 0 auto;
-}
 
-@media (max-width: 991px){
+@media (max-width: 992px){
     .img-fluid {
         width: 280px;
         height: auto;
@@ -59,6 +55,14 @@
     .device-type {
         display: flex;
         justify-content: center;
+    }
+
+    .center-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
     }
 }
 

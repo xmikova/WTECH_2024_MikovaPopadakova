@@ -36,6 +36,10 @@
                             <h5><a href="{{ route('products.show', $product->id) }}" class="product-link">{{ $product->name }}</a></h5>
                             <p>{{ $product->description }}</p>
                             <p>Cena: {{ $product->price }}€</p>
+                            <form action="{{ route('cart.delete', $product->id) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-outline-dark remove-btn" title="Odstranit">Odstrániť z košíka</button>
+                            </form>
                         </div>
                         <div class="div_button col-2 d-flex flex-column justify-content-around align-items-center">
                             <form action="{{ route('cart.update', $product->id) }}" method="POST">

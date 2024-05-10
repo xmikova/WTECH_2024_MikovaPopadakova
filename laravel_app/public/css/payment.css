@@ -30,8 +30,13 @@
 }
 
 @media (max-width: 768px){
+    .payment-container{
+        margin: 20px auto;
+        width: 80%;
+    }
+
     .payment-type-container{
-        padding-right: 50px;
-        padding-left: 50px;
+        margin: 20px auto;
+        width: 80%;
     }
 }

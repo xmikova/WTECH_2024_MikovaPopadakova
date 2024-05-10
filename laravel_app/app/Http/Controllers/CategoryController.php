@@ -14,10 +14,8 @@ class CategoryController extends Controller
 
         $productsQuery = Product::where('category_id', $category->id);
 
-        $deviceTypes = Product::distinct()->pluck('device_type');
-
-        $colors = Product::distinct()->pluck('color');
-
+        $deviceTypes = $productsQuery->distinct()->pluck('device_type');
+        $colors = $productsQuery->distinct()->pluck('color');
         $minPrice = $productsQuery->min('price');
         $maxPrice = $productsQuery->max('price');
 
@@ -29,7 +27,7 @@ class CategoryController extends Controller
             $productsQuery->where('color', $request->input('color'));
         }
 
-        if ($request->has('min_price')){
+        if ($request->has('min_price')) {
             $productsQuery->whereRaw('CAST(price AS INTEGER) >= ?', [$request->input('min_price')]);
         }
 
@@ -50,6 +48,6 @@ class CategoryController extends Controller
 
         $products = $productsQuery->paginate(20);
 
-        return view('category', compact('products', 'category',  'deviceTypes', 'colors', 'minPrice','maxPrice'));
+        return view('category', compact('products', 'category', 'deviceTypes', 'colors', 'minPrice', 'maxPrice'));
     }
 }
